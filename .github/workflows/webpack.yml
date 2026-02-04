@@ -1,4 +1,4 @@
-name: Frontend CI/CD
+name: Frontend CI/CD with Netlify Deploy
 
 on:
   push:
@@ -7,13 +7,12 @@ on:
     branches: [ "main" ]
 
 jobs:
-  frontend:
-    name: Build Frontend (Angular/Vite)
+  build:
+    name: Build Frontend
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
-        node-version: [22.x, 20.x]   # modern Node versions
+        node-version: [22.x, 20.x]
 
     steps:
       - uses: actions/checkout@v4
@@ -26,6 +25,34 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # 👇 Angular/Vite build command
       - name: Build Frontend
         run: npm run build
+
+      - name: Copy _redirects file
+        run: cp public/_redirects dist/otp-entrance-frontend/_redirects
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-dist-${{ matrix.node-version }}
+          path: dist/otp-entrance-frontend
+
+  deploy:
+    name: Deploy to Netlify
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          # Download the artifact from Node 22.x build only
+          name: frontend-dist-22.x
+          path: dist/otp-entrance-frontend
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v2
+        with:
+          publish-dir: dist/otp-entrance-frontend
+          production-deploy: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
