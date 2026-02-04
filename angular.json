@@ -39,9 +39,7 @@
                 "input": "public",
                 "output": "public"
               }
-            ]
-          ,
-
+            ],
             "styles": [
               "src/styles.css"
             ]
