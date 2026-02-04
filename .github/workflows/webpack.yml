@@ -1,4 +1,4 @@
-name: NodeJS with Webpack
+name: Full Stack CI/CD
 
 on:
   push:
@@ -7,12 +7,29 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  backend:
+    name: Build Backend (Spring Boot)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Build with Maven
+        run: ./mvnw clean install -DskipTests
+
+  frontend:
+    name: Build Frontend (Node.js)
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [22.x, 20.x]   # 👈 Updated to Node 22.x with fallback to 20.x
+        node-version: [22.x, 20.x]   # 👈 modern Node versions
 
     steps:
       - uses: actions/checkout@v4
@@ -28,5 +45,5 @@ jobs:
       - name: Ensure webpack-cli is installed
         run: npm install --save-dev webpack-cli
 
-      - name: Build with Webpack
-        run: npx webpack
+      - name: Build Frontend
+        run: npm run build   # 👈 use Angular/Vite build script instead of raw webpack
