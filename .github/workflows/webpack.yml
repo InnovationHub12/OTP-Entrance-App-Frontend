@@ -8,12 +8,12 @@ on:
 
 jobs:
   frontend:
-    name: Build Frontend (Node.js)
+    name: Build Frontend (Angular/Vite)
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [22.x, 20.x]   # 👈 modern Node versions
+        node-version: [22.x, 20.x]   # modern Node versions
 
     steps:
       - uses: actions/checkout@v4
@@ -26,8 +26,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Ensure webpack-cli is installed
-        run: npm install --save-dev webpack-cli
-
+      # 👇 Angular/Vite build command
       - name: Build Frontend
-        run: npm run build   # 👈 use Angular/Vite build script instead of raw webpack
+        run: npm run build
