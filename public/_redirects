@@ -1,1 +1,8 @@
+# Angular SPA routing
 /*    /index.html   200
+
+# Handle 404 gracefully (optional custom page)
+/404   /index.html   200
+
+# Example API proxy (adjust target URL as needed)
+/api/*   https://your-backend.example.com/:splat   200
