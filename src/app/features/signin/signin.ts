@@ -2,10 +2,14 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService, LoginResponse } from '../../services/auth-service';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.html',
+  imports: [
+    FormsModule
+  ],
   styleUrls: ['./signin.css']
 })
 export class Signin {
