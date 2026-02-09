@@ -42,7 +42,7 @@ export class Signin {
 
           localStorage.setItem('userData', JSON.stringify(res));
 
-          this.router.navigate(['/QR']);
+          this.router.navigate(['/userProfile']);
         } else {
           this.snackBar.open(res.message || 'Login failed', 'Close', {
             duration: 8000,

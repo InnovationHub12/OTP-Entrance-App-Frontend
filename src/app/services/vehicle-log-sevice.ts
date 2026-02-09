@@ -33,4 +33,13 @@ export class VehicleLogService {
   getTodayLogs(): Observable<VehicleLogEntry[]> {
     return this.http.get<VehicleLogEntry[]>(`${this.apiUrl}/today`);
   }
+
+  updateRegNumber(idNumber: string, regNumber: string) {
+    return this.http.put<{ success: boolean; message: string; regNumber: string }>(
+      'http://localhost:8080/api/users/updateRegNumber',
+      { idNumber, regNumber }
+    );
+  }
+
+
 }

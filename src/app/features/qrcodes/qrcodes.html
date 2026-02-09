@@ -1,10 +1,34 @@
-<div class="qr-container" *ngIf="userData?.success">
-  <h2>Welcome {{ userData.name }}</h2>
-  <p>Registration Number: {{ userData.regNumber }}</p>
-  <p>Role: {{ userData.role }}</p>
+<div class="profile-container" *ngIf="userData?.success" (dblclick)="onDoubleClick()">
+  <h2>User Profile</h2>
 
-  <div *ngIf="qrCodeUrl">
-    <h3>Your QR Code:</h3>
+  <div class="profile-details">
+    <p><strong>Name:</strong> {{ userData.name }} {{ userData.surname }}</p>
+    <p><strong>Registration Number:</strong> {{ userData.regNumber }}</p>
+    <p><strong>Role:</strong> {{ userData.role }}</p>
+  </div>
+
+  <div class="qr-section" *ngIf="qrCodeUrl">
     <img [src]="qrCodeUrl" alt="User QR Code" />
+  </div>
+
+  <!-- ✅ Sign Out button now inside the container -->
+  <div class="signout-container">
+    <button class="btn btn-danger btn-small" (click)="signOut()">Sign Out</button>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" *ngIf="showModal">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h2>Edit User Profile</h2>
+
+    <p><strong>Name:</strong> {{ userData.name }} {{ userData.surname }}</p>
+    <p><strong>Role:</strong> {{ userData.role }}</p>
+
+    <label for="regNumber">Registration Number:</label>
+    <input id="regNumber" [(ngModel)]="editableRegNumber" />
+
+    <button (click)="saveRegNumber()">Save</button>
   </div>
 </div>

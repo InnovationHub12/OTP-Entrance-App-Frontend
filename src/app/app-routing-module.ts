@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'signup', component: Signup },
   { path: 'signing', component: Signin },
   { path: 'home', component: Home },
-  {path: 'QR',component:Qrcodes}
+  {path: 'userProfile',component:Qrcodes}
 ,  { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 

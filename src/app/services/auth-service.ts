@@ -13,6 +13,14 @@ export class AuthService {
   login(idNumber: number | string, password: string): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.apiUrl}/login`, { idNumber, password });
   }
+
+
+  logout() {
+    localStorage.removeItem("idNumber");
+    localStorage.removeItem("regNumber");
+    localStorage.removeItem("qrCode");
+  }
+
 }
 export interface LoginResponse {
   success: boolean;

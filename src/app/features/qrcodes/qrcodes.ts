@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {OtpService} from '../../services/otp-service';
+import {VehicleLogService} from '../../services/vehicle-log-sevice';
+import {AuthService} from '../../services/auth-service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-qrcodes',
@@ -8,12 +10,15 @@ import {OtpService} from '../../services/otp-service';
   styleUrl: './qrcodes.css',
 })
 export class Qrcodes implements OnInit {
-  regNumber: string = '';
   otp: string = '';
   qrCodeUrl: string | null = null;
   userData: any;
+  showModal = false;
+  editableRegNumber: string = '';
 
-  constructor(private otpService: OtpService) {}
+  constructor(private vehicleLogService: VehicleLogService,
+              private authService: AuthService,
+              private router : Router) {}
 
   ngOnInit(): void {
     const data = localStorage.getItem('userData');
@@ -29,21 +34,33 @@ export class Qrcodes implements OnInit {
     }
   }
 
-  generateQr() {
-    if (!this.userData?.regNumber) {
-      console.error('No registration number found in userData');
-      return;
-    }
+  onDoubleClick(): void {
+    this.showModal = true;
+  }
 
-    this.otpService.getQrCode(this.userData.regNumber).subscribe({
+  closeModal(): void {
+    this.showModal = false;
+  }
+
+  saveRegNumber(): void {
+    this.vehicleLogService.updateRegNumber(this.userData.idNumber, this.editableRegNumber).subscribe({
       next: (res) => {
-
-        this.qrCodeUrl = 'data:image/png;base64,' + res.qrCode;
+        if (res.success) {
+          this.userData.regNumber = res.regNumber;
+          localStorage.setItem('userData', JSON.stringify(this.userData));
+          this.closeModal();
+        } else {
+          console.error(res.message);
+        }
       },
       error: (err) => {
-        console.error(err);
+        console.error('Failed to update regNumber', err);
       }
     });
   }
 
+  signOut() {
+    this.authService.logout();
+     this.router.navigate(['/signing']);
+  }
 }
