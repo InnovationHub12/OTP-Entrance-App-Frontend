@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {VerifyQrResponse} from '../features/scan-qr/scan-qr';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class OtpService {
     return this.http.get(`${this.baseUrl}/qr?regNumber=${encodeURIComponent(regNumber)}`);
   }
 
-  verifyOtp(regNumber: string, otp: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/verify`, { regNumber, otp });
+  verifyQr(regNumber: string): Observable<VerifyQrResponse> {
+    return this.http.post<VerifyQrResponse>('/api/otp/scan-verify', { regNumber });
   }
+
 }
