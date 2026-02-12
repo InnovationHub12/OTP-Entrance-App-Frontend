@@ -13,28 +13,32 @@ import {HttpClient} from '@angular/common/http';
 export class ScanQR {
   allowedFormats = [BarcodeFormat.QR_CODE];
   scannedRegNumber: string = '';
+  logs: any[] = [];
+
   constructor(private authService: AuthService,
               private http: HttpClient,
               private snackBar: MatSnackBar) {}
 
+
   onScanSuccess(decodedText: string): void {
-    // decodedText is the full otpauth URI from the QR scanner
+    // 1️⃣ Parse reg number from otpauth URI
     const match = decodedText.match(/OTP-Entrance%3A([^?]+)/);
     const regNumber = match ? decodeURIComponent(match[1]) : decodedText;
 
     this.scannedRegNumber = regNumber;
 
+    // 2️⃣ Verify user
     this.authService.verifyQr(regNumber).subscribe({
       next: (res: VerifyQrResponse) => {
         if (res.success && res.user) {
-          // ✅ Show verification success
-          this.snackBar.open('User verified successfully!', 'Close', {
+          // 3️⃣ Grant access (UI feedback)
+          this.snackBar.open('Access granted: User verified!', 'Close', {
             duration: 5000,
             panelClass: ['snackbar-success']
           });
 
-          // ✅ Log vehicle entry
-          this.http.post(`/api/vehicle-log/entry/${res.user.idNumber}`, {
+          // 4️⃣ Log vehicle entry (make sure to call backend on port 8080 or via proxy)
+          this.http.post(`http://localhost:8080/api/vehicle-log/entry/${res.user.idNumber}`, {
             registrationNumber: res.user.regNumber
           }).subscribe({
             next: () => {
@@ -42,6 +46,9 @@ export class ScanQR {
                 duration: 5000,
                 panelClass: ['snackbar-success']
               });
+
+              // 5️⃣ Refresh vehicle log table
+              this.updateVehicleTable();
             },
             error: () => {
               this.snackBar.open('Failed to log vehicle entry', 'Close', {
@@ -52,7 +59,6 @@ export class ScanQR {
           });
 
         } else {
-          // ❌ Verification failed
           this.snackBar.open(res.message || 'Verification failed', 'Close', {
             duration: 5000,
             panelClass: ['snackbar-error']
@@ -60,7 +66,6 @@ export class ScanQR {
         }
       },
       error: () => {
-        // ❌ API error
         this.snackBar.open('Error verifying QR code', 'Close', {
           duration: 5000,
           panelClass: ['snackbar-error']
@@ -69,7 +74,19 @@ export class ScanQR {
     });
   }
 
-
+  updateVehicleTable(): void {
+    this.http.get<any[]>('/api/vehicle-log/today').subscribe({
+      next: (data) => {
+        this.logs = data; // update table data source
+      },
+      error: () => {
+        this.snackBar.open('Failed to refresh vehicle log table', 'Close', {
+          duration: 5000,
+          panelClass: ['snackbar-error']
+        });
+      }
+    });
+  }
 }
 
 export interface VerifyQrResponse {
