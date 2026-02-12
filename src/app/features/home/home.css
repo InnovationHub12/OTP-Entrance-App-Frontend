@@ -1,6 +1,26 @@
-h2 {
-  margin-top: 40px;
-  color: #333;
+.Welcome-header {
+  position: absolute;
+  top: 20px;                 /* distance from top */
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-size: 28px;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: center;
+
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Buttons stay centered */
+.roles-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
 }
 
 p {
@@ -8,13 +28,128 @@ p {
   font-size: 18px;
   color: #555;
 }
+
 .bg-container {
   min-height: 100vh;
   width: 100%;
-  background-image: url('/assets/images/gadla.jpeg');
+  background-image: url('/assets/images/back.jpeg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+  position: relative;          /* ✅ IMPORTANT */
 }
 
+.admin-wrapper {
+  position: absolute;
+  top: 300px;
+  left: 500px;
+  text-align: center;   /* centers label under button */
+}
 
+.admin-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  z-index: 1000;
+  display: block;       /* ensures button is on its own line */
+}
+
+.admin-btn img {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  display: block;
+}
+
+.admin-btn:hover img {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+.admin-label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 8px;      /* spacing between button and label */
+  display: block;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.secure-wrapper {
+  position: absolute;
+  top: 300px;
+  left: 900px;
+  text-align: center;   /* centers label under button */
+}
+
+.secure-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  z-index: 1000;
+  display: block;       /* ensures button is on its own line */
+}
+
+.secure-btn img {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  display: block;
+}
+
+.secure-btn:hover img {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+.secure-label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 8px;      /* spacing between button and label */
+  display: block;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.employee-wrapper {
+  position: absolute;
+  top: 500px;
+  left: 700px;
+  text-align: center;   /* centers label under button */
+}
+
+.employee-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  z-index: 1000;
+  display: block;       /* ensures button is on its own line */
+}
+
+.employee-btn img {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  display: block;
+}
+
+.employee-btn:hover img {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+.employee-label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 8px;      /* spacing between button and label */
+  display: block;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
