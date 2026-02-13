@@ -1,0 +1,30 @@
+.access-granted-container {
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #28a745;   /* green cross */
+  cursor: pointer;
+  text-decoration: none; /* ensure link looks clean */
+}
+
+.close-btn:hover {
+  color: #218838;   /* darker green on hover */
+}
+
+.success-message {
+  background-color: #4caf50;   /* green background for the success box */
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 50px;
+  width: 100%;                 /* stretch box left to right */
+  box-sizing: border-box;
+}

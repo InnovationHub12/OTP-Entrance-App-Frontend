@@ -12,6 +12,7 @@ import { ScanQR } from './features/scan-qr/scan-qr';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { LogIn } from './features/log-in/log-in';
 import { Register } from './features/register/register';
+import { AccessGranted } from './features/access-granted/access-granted';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { Register } from './features/register/register';
     ForgotPassword,
     ScanQR,
     LogIn,
-    Register
+    Register,
+    AccessGranted
   ],
   imports: [
     BrowserModule,

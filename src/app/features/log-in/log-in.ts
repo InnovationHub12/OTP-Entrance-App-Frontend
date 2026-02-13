@@ -37,10 +37,16 @@ export class LogIn {
             panelClass: ['snackbar-success']
           });
 
-
+          // Save user data
           localStorage.setItem('userData', JSON.stringify(res));
 
-          this.router.navigate(['/userProfile']);
+
+          if (res.role === 'security') {
+            this.router.navigate(['/scan']);
+          } else {
+            this.router.navigate(['/userProfile']);
+          }
+
         } else {
           this.snackBar.open(res.message || 'Login failed', 'Close', {
             duration: 8000,
@@ -56,4 +62,5 @@ export class LogIn {
       }
     });
   }
+
 }

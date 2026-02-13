@@ -1,8 +1,46 @@
-<h2>Scan User QR Code</h2>
+<nav class="navbar">
+  <ul>
+    <li>
+      <a (click)="showScanner()" [class.active]="viewMode === 'scanner'">
+        Scan QR Code
+      </a>
+    </li>
+    <li>
+      <a (click)="showLogin()" [class.active]="viewMode === 'login'">
+        Log in using ID Number
+      </a>
+    </li>
+  </ul>
+</nav>
 
-<zxing-scanner
-  (scanSuccess)="onScanSuccess($event)"
-  [formats]="allowedFormats"
-></zxing-scanner>
+<!-- Scanner -->
+<div *ngIf="viewMode === 'scanner'">
+  <h2>Scan User QR Code</h2>
+  <zxing-scanner
+    (scanSuccess)="onScanSuccess($event)"
+    [formats]="allowedFormats"
+  ></zxing-scanner>
+  <p *ngIf="scannedRegNumber">Scanned: {{ scannedRegNumber }}</p>
+</div>
 
-<p *ngIf="scannedRegNumber">Scanned: {{ scannedRegNumber }}</p>
+<!-- Login (ID only) -->
+<div *ngIf="viewMode === 'login'">
+  <h2>Log In with ID Number</h2>
+  <form (ngSubmit)="onLogin()" #loginForm="ngForm" novalidate>
+    <label for="idNumber">ID Number</label>
+    <input
+      type="text"
+      id="idNumber"
+      name="idNumber"
+      [(ngModel)]="idNumber"
+      placeholder="Enter your ID Number"
+      required
+      #idNumberCtrl="ngModel"
+    />
+    <div *ngIf="idNumberCtrl.invalid && idNumberCtrl.touched" class="error">
+      ID Number is required.
+    </div>
+
+    <button type="submit" [disabled]="loginForm.invalid">Log In</button>
+  </form>
+</div>

@@ -21,11 +21,9 @@ export class AuthService {
     localStorage.removeItem("qrCode");
   }
 
-  forgotPassword(idNumber: string, newPassword: string) {
-    return this.http.put<{
-      success: boolean; message: string }>( `${this.apiUrl}/forgot-password`,
-      { idNumber, newPassword
-      } );
+  // auth-service.ts
+  loginWithId(idNumber: string): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${this.apiUrl}/login-with-id`, { idNumber });
   }
 
   verifyQr(regNumber: string) {
