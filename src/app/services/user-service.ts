@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface User {
-  idNumber: number;
+  idNumber: string;
   name: string;
   regNumber: string;
   password: string;
@@ -18,18 +18,17 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  // Register a new user
   registerUser(user: User): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, user);
   }
 
-  // Get all users
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.apiUrl);
   }
 
-  // Get a single user by idNumber
-  getUser(idNumber: number): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}/${idNumber}`);
+  deleteUser(idNumber: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${idNumber}`);
   }
+
 }
+

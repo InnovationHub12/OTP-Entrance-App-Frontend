@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
 export class Register {
 
   formData: User & { confirmPassword: string } = {
-    idNumber: 0,
+    idNumber: '',
     name: '',
     regNumber: '',
     password: '',

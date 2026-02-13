@@ -13,6 +13,9 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { LogIn } from './features/log-in/log-in';
 import { Register } from './features/register/register';
 import { AccessGranted } from './features/access-granted/access-granted';
+import { AddAdmin } from './features/add-admin/add-admin';
+import { Admin } from './features/admin/admin';
+import { Navbar } from './shared/navbar/navbar';
 
 
 @NgModule({
@@ -24,7 +27,10 @@ import { AccessGranted } from './features/access-granted/access-granted';
     ScanQR,
     LogIn,
     Register,
-    AccessGranted
+    AccessGranted,
+    AddAdmin,
+    Admin,
+    Navbar
   ],
   imports: [
     BrowserModule,

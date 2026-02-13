@@ -1,0 +1,84 @@
+.admin-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.admin-card {
+  position: relative;
+  width: 600px;
+  height: 520px;
+  background-color: #e9f9ee; /* extremely light green */
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  padding: 20px;
+}
+
+.admin-card h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #28a745;
+  font-size: 35px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.btn {
+  position: absolute;
+  background-color: #28a745;
+  color: white;
+  border: none;
+
+  padding: 60px 60px;   /* Bigger height */
+  width: 210;
+
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 17px;      /* Bigger text */
+  font-weight: 600;
+
+  padding: 36px 36px;   /* controls size */
+  width: 210px;         /* IMPORTANT */
+
+  white-space: nowrap; /* prevents stretching */
+  transition: all 0.25s ease;
+}
+.shift-left {
+  padding-left: 0;
+  padding-right: 18px;
+}
+
+
+/* Hover effect */
+.btn:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+.top-left {
+  top: 120px;
+  left: 40px;
+}
+
+.top-right {
+  top: 120px;
+  right: 40px;
+}
+
+.bottom-left {
+  bottom: 175px;
+  left: 40px;
+}
+
+.bottom-right {
+  bottom: 175px;
+  right: 40px;
+}
+
+.bottom-center {
+  position: absolute;
+  bottom: 130px;
+  width: 65%;
+  text-align: center;
+}

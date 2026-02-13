@@ -1,0 +1,35 @@
+<app-navbar></app-navbar>
+
+<div class="admin-wrapper">
+  <div class="admin-card">
+    <h2>All Users</h2>
+
+    <table class="users-table" *ngIf="users.length > 0; else noUsers">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>ID Number</th>
+        <th>Role</th>
+        <th>Reg Number</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.name }}</td>
+        <td>{{ user.idNumber }}</td>
+        <td>{{ user.role }}</td>
+        <td>{{ user.regNumber }}</td>
+        <td>
+          <button class="btn delete-btn" (click)="deleteUser(user.idNumber)">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <ng-template #noUsers>
+      <p>No users found.</p>
+    </ng-template>
+  </div>
+</div>
+

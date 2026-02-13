@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+<div class="add-admin-card">
+  <h2>Add Admin</h2>
+
+  <form novalidate>
+    <label for="name">Initials and Surname</label>
+    <input type="text" id="name" name="name" placeholder="Enter initials and surname" />
+
+    <label for="idNumber">ID Number</label>
+    <input type="text" id="idNumber" name="idNumber" placeholder="Enter ID Number" />
+
+    <label for="password">Create Password</label>
+    <input type="password" id="password" name="password" placeholder="Create password" />
+
+    <label for="confirmPassword">Confirm Password</label>
+    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm password" />
+    <label for="role">Role</label>
+    <select id="role" name="role" required>
+      <option value="">-- Select Role --</option>
+      <option value="security">Admin</option>
+
+    </select>
+    <button type="submit">REGISTER ADMIN</button>
+  </form>
+</div>

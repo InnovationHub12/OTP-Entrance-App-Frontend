@@ -13,7 +13,6 @@
   </ul>
 </nav>
 
-<!-- Scanner -->
 <div *ngIf="viewMode === 'scanner'">
   <h2>Scan User QR Code</h2>
   <zxing-scanner
@@ -23,7 +22,7 @@
   <p *ngIf="scannedRegNumber">Scanned: {{ scannedRegNumber }}</p>
 </div>
 
-<!-- Login (ID only) -->
+
 <div *ngIf="viewMode === 'login'">
   <h2>Log In with ID Number</h2>
   <form (ngSubmit)="onLogin()" #loginForm="ngForm" novalidate>
