@@ -40,3 +40,20 @@
 .delete-btn:hover {
   background-color: #d32f2f;
 }
+.mini-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background: #f9f9f9;
+}
+
+.mini-table th, .mini-table td {
+  border: 1px solid #ccc;
+  padding: 6px;
+  text-align: left;
+}
+
+.mini-table th {
+  background-color: #007bff;
+  color: white;
+}

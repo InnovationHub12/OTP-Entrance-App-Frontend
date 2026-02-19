@@ -1,37 +1,30 @@
 <div class="bg-container">
   <h1 class="Welcome-header">Welcome to OTP Entrance</h1>
 
-  <div class="roles-container">
+  <!-- White container for buttons -->
+  <div class="roles-box">
+    <!-- Admin Button -->
     <div class="admin-wrapper">
-      <button class="admin-btn">
-        <img
-          src="assets/images/admn.jpg"
-          alt="Admin Icon"
-          class="admin-icon"
-        />
+      <button class="admin-btn" [disabled]="isDisabled('admin')" (click)="goToADmin()">
+        <img src="assets/images/admn.jpg" alt="Admin Icon" class="admin-icon" />
       </button>
       <span class="admin-label">Admin</span>
     </div>
+
+    <!-- Security Button -->
     <div class="secure-wrapper">
-      <button class="secure-btn" (click)="goToSignIn()" >
-        <img
-          src="assets/images/security.jpg"
-          alt="secure Icon"
-          class="secure-icon"
-        />
+      <button class="secure-btn" [disabled]="isDisabled('security')" (click)="goToScan()">
+        <img src="assets/images/security.jpg" alt="Security Icon" class="secure-icon" />
       </button>
       <span class="secure-label">Security</span>
     </div>
+
+    <!-- Employee Button -->
     <div class="employee-wrapper">
-      <button class="employee-btn">
-        <img
-          src="assets/images/brief.jpg"
-          alt="employee Icon"
-          class="employee-icon"
-        />
+      <button class="employee-btn" [disabled]="isDisabled('official')" (click)="goToQrCode()">
+        <img src="assets/images/brief.jpg" alt="Employee Icon" class="employee-icon" />
       </button>
       <span class="employee-label">Employee</span>
     </div>
   </div>
 </div>
-

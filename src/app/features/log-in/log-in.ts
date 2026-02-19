@@ -39,13 +39,9 @@ export class LogIn {
 
           // Save user data
           localStorage.setItem('userData', JSON.stringify(res));
+          localStorage.setItem('role', res.role);
 
-
-          if (res.role === 'security') {
-            this.router.navigate(['/scan']);
-          } else {
-            this.router.navigate(['/userProfile']);
-          }
+            this.router.navigate(['/home']);
 
         } else {
           this.snackBar.open(res.message || 'Login failed', 'Close', {

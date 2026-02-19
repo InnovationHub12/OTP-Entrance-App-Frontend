@@ -15,15 +15,46 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let user of users">
-        <td>{{ user.name }}</td>
-        <td>{{ user.idNumber }}</td>
-        <td>{{ user.role }}</td>
-        <td>{{ user.regNumber }}</td>
-        <td>
-          <button class="btn delete-btn" (click)="deleteUser(user.idNumber)">Delete</button>
-        </td>
-      </tr>
+      <ng-container *ngFor="let user of users">
+        <tr>
+          <td>{{ user.name }}</td>
+          <td>{{ user.idNumber }}</td>
+          <td>{{ user.role }}</td>
+          <td>{{ user.regNumber }}</td>
+          <td>
+            <button class="btn delete-btn" (click)="deleteUser(user.idNumber)">
+              Delete
+            </button>
+            <button class="btn" (click)="toggleDropdown(user.idNumber)">
+              {{ expandedUserId === user.idNumber ? 'Hide Vehicle entry' : 'View Vehicle entry' }}
+            </button>
+          </td>
+        </tr>
+
+        <tr *ngIf="expandedUserId === user.idNumber">
+          <td colspan="5">
+            <table class="mini-table" *ngIf="userLogs[user.idNumber].length > 0; else noVehicles">
+              <thead>
+              <tr>
+                <th>Registration</th>
+                <th>Entry Date</th>
+                <th>Entry Time</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let log of userLogs[user.idNumber]">
+                <td>{{ log.registrationNumber }}</td>
+                <td>{{ log.entryDate }}</td>
+                <td>{{ log.entryTime }}</td>
+              </tr>
+              </tbody>
+            </table>
+            <ng-template #noVehicles>
+              <p>No vehicle entries found.</p>
+            </ng-template>
+          </td>
+        </tr>
+      </ng-container>
       </tbody>
     </table>
 
@@ -32,4 +63,3 @@
     </ng-template>
   </div>
 </div>
-

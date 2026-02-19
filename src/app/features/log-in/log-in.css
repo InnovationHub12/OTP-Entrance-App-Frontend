@@ -5,14 +5,14 @@ h2 {
 form {
   border-top: 4px solid #009966;
 }
-/* Success toast (green) */
+
 .snackbar-success {
-  background-color: #4caf50 !important; /* Material green */
+  background-color: #4caf50 !important;
   color: #fff !important;
 }
 
-/* Error toast (red) */
+
 .snackbar-error {
-  background-color: #f44336 !important; /* Material red */
+  background-color: #f44336 !important;
   color: #fff !important;
 }

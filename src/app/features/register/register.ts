@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import {User, UserService} from '../../services/user-service';
+import {UserService} from '../../services/user-service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
+import {User} from '../../Interfaces/user';
 
 @Component({
   selector: 'app-register',

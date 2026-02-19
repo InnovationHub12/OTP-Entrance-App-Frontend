@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   private apiUrl = 'http://localhost:8080/api/users';
+  private role: string | null = null;
 
   constructor(private http: HttpClient) {}
 
@@ -21,7 +22,7 @@ export class AuthService {
     localStorage.removeItem("qrCode");
   }
 
-  // auth-service.ts
+
   loginWithId(idNumber: string): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.apiUrl}/login-with-id`, { idNumber });
   }
@@ -31,6 +32,15 @@ export class AuthService {
       'http://localhost:8080/api/otp/scan-verify',
       { regNumber }
     );
+  }
+
+  setRole(role: string): void {
+    this.role = role;
+    localStorage.setItem('role', role);
+  }
+
+  getRole(): string | null {
+    return this.role ?? localStorage.getItem('role');
   }
 
 }

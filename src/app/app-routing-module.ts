@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'access-granted', component: AccessGranted },
   {path: 'userProfile',component:Qrcodes},
   {path: 'forgot-password',component:ForgotPassword}
-,  { path: '', redirectTo: '/home', pathMatch: 'full' }
+,  { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 
