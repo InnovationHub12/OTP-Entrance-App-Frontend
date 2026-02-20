@@ -3,6 +3,8 @@ import {VehicleLogService} from '../../services/vehicle-log-sevice';
 import {AuthService} from '../../services/auth-service';
 import {Router} from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar'
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-qrcodes',
@@ -78,4 +80,23 @@ export class Qrcodes implements OnInit {
     this.authService.logout();
      this.router.navigate(['/login']);
   }
+
+  downloadPdf() {
+    const element = document.querySelector('.profile-container');
+    if (!element) return;
+
+    html2canvas(element as HTMLElement).then(canvas => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('p', 'mm', 'a4');
+
+      const imgProps = pdf.getImageProperties(imgData);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+      pdf.save('user-scan.pdf');
+    });
+  }
+
+
 }

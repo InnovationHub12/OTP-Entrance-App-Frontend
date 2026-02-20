@@ -88,4 +88,14 @@
   background-color: #c82333; /* darker red on hover */
 }
 
+.btn-custom {
+  background-color: #1b459a; /* purple */
+  color: #fff;              /* white text */
+  border: none;
+}
+
+.btn-custom:hover {
+  background-color: #1b459a; /* darker purple on hover */
+}
+
 
