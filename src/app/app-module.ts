@@ -10,6 +10,7 @@ import { Qrcodes } from './features/qrcodes/qrcodes';
 import { ForgotPassword } from './forgot-password/forgot-password';
 import { ScanQR } from './features/scan-qr/scan-qr';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { MatIconModule } from '@angular/material/icon';
 import { LogIn } from './features/log-in/log-in';
 import { Register } from './features/register/register';
 import { AccessGranted } from './features/access-granted/access-granted';
@@ -38,8 +39,8 @@ import { Navbar } from './shared/navbar/navbar';
     FormsModule,
     HttpClientModule,
     MatSnackBarModule,
-    ZXingScannerModule
-
+    ZXingScannerModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [App]

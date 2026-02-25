@@ -3,6 +3,7 @@ import {VehicleLogService} from '../../services/vehicle-log-sevice';
 import {AuthService} from '../../services/auth-service';
 import {Router} from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar'
+import { MatIconModule } from '@angular/material/icon';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
@@ -98,5 +99,7 @@ export class Qrcodes implements OnInit {
     });
   }
 
-
+goHome(): void {
+  this.router.navigate(['/home']);
+  }
 }

@@ -1,9 +1,13 @@
-
-
 <div class="profile-container" *ngIf="userData?.success" (dblclick)="onDoubleClick()">
+
+  <button mat-icon-button class="home-btn" (click)="goHome()">
+    <mat-icon>home</mat-icon>
+  </button>
+
   <div class="download-container">
     <button class="btn btn-custom btn-small" (click)="downloadPdf()">Download Scan</button>
   </div>
+
   <h2>User Profile</h2>
 
   <div class="profile-details">
@@ -15,7 +19,6 @@
   <div class="qr-section" *ngIf="qrCodeUrl">
     <img [src]="qrCodeUrl" alt="User QR Code" />
   </div>
-
 
   <div class="signout-container">
     <button class="btn btn-danger btn-small" (click)="signOut()">Sign Out</button>
