@@ -28,39 +28,51 @@ export class Register {
               private router: Router) {
   }
 
-  onSubmit(): void {
-    if (this.formData.password !== this.formData.confirmPassword) {
-      this.snackBar.open('Passwords do not match!', 'Close', {
-        duration: 5000,
-        panelClass: ['snackbar-error']
-      });
-      return;
-    }
-
-    this.userService.registerUser({
-      idNumber: this.formData.idNumber,
-      name: this.formData.name,
-      regNumber: this.formData.regNumber,
-      password: this.formData.password,
-      role: this.formData.role
-    }).subscribe({
-      next: (res: { message: string }) => {
-        this.snackBar.open(res.message || 'Registration successful!', 'Close', {
-          duration: 5000,
-          panelClass: ['snackbar-success']
-        });
-        this.router.navigate(['/signin']);
-      },
-      error: (err: { error: { message: any } }) => {
-        this.snackBar.open(
-          'Registration failed: ' + (err.error?.message || 'Unknown error'),
-          'Close',
-          {
-            duration: 5000,
-            panelClass: ['snackbar-error']
-          }
-        );
-      }
+onSubmit(): void {
+  // Check for empty/null values
+  if (!this.formData.name || !this.formData.regNumber || !this.formData.idNumber ||
+      !this.formData.password || !this.formData.confirmPassword || !this.formData.role) {
+    this.snackBar.open('⚠️ Please fill in all required fields!', 'Close', {
+      duration: 5000,
+      panelClass: ['snackbar-error']
     });
+    return;
   }
+
+  // Check password match
+  if (this.formData.password !== this.formData.confirmPassword) {
+    this.snackBar.open('Passwords do not match!', 'Close', {
+      duration: 5000,
+      panelClass: ['snackbar-error']
+    });
+    return;
+  }
+
+  // Call backend
+  this.userService.registerUser({
+    idNumber: this.formData.idNumber,
+    name: this.formData.name,
+    regNumber: this.formData.regNumber,
+    password: this.formData.password,
+    role: this.formData.role
+  }).subscribe({
+    next: (res: { message: string }) => {
+      this.snackBar.open(res.message || 'Registration successful!', 'Close', {
+        duration: 5000,
+        panelClass: ['snackbar-success']
+      });
+      this.router.navigate(['/signin']);
+    },
+    error: (err: { error: { message: any } }) => {
+      this.snackBar.open(
+        'Registration failed: ' + (err.error?.message || 'Unknown error'),
+        'Close',
+        {
+          duration: 5000,
+          panelClass: ['snackbar-error']
+        }
+      );
+    }
+  });
+}
 }

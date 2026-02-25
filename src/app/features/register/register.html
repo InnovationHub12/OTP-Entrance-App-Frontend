@@ -1,5 +1,5 @@
 <h2>Sign Up</h2>
-<form (ngSubmit)="onSubmit()" #signupForm="ngForm">
+<form (ngSubmit)="onSubmit()" #signupForm="ngForm" novalidate>
   <label for="name">Initials and Surname</label>
   <input type="text" id="name" name="name" [(ngModel)]="formData.name" placeholder="Initials and Surname" required />
 
@@ -22,9 +22,9 @@
     <option value="officials">Officials</option>
   </select>
 
-  <button type="submit">SIGN UP</button>
+  <button type="submit" [disabled]="signupForm.invalid">SIGN UP</button>
 </form>
 
 <p>{{ message }}</p>
 
-<a href="/login">Already have an account? Sign In</a>
+<a routerLink="/login">Already have an account? Sign In</a>
