@@ -22,10 +22,14 @@
     <option value="officials">Officials</option>
   </select>
 
-  <button type="submit"
-          [disabled]="signupForm.invalid"
-          title="Please complete all fields before signing up"
-  >SIGN UP</button>
+  <button
+    type="submit"
+    [disabled]="signupForm.invalid"
+    class="tooltip">
+    SIGN UP
+    <span class="tooltiptext">⚠️ Please complete all fields before signing up</span>
+  </button>
+
 </form>
 
 <p>{{ message }}</p>
