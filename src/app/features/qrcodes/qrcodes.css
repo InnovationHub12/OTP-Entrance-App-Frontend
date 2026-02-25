@@ -1,13 +1,14 @@
 /* Top bar with icons only */
 .top-bar {
   display: flex;
-  justify-content: space-between; /* home left, download right */
+  justify-content: space-between; /* home left, download middle, signout right */
   align-items: center;
   margin-bottom: 10px;
 }
 
 .home-icon,
-.download-icon {
+.download-icon,
+.signout-icon {
   font-size: 24px;
   color: #28a745; /* green */
   cursor: pointer;
@@ -15,7 +16,8 @@
 }
 
 .home-icon:hover,
-.download-icon:hover {
+.download-icon:hover,
+.signout-icon:hover {
   transform: scale(1.1);
   color: #1e7e34; /* darker green on hover */
 }
@@ -42,28 +44,6 @@
 .qr-section img {
   width: 250px;
   height: 250px;
-}
-
-/* Signout button */
-.signout-container {
-  margin-top: auto;
-  text-align: center;
-}
-
-.btn-small {
-  padding: 4px 10px;
-  font-size: 12px;
-  border-radius: 4px;
-  width: 100px;
-  text-align: center;
-  border: none;
-  cursor: pointer;
-  background-color: #dc3545;
-  color: #fff;
-}
-
-.btn-small:hover {
-  background-color: #c82333;
 }
 
 /* Modal styling */
