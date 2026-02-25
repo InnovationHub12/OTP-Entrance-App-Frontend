@@ -1,0 +1,37 @@
+services:
+  frontend:
+    build: ./OTP-Entrance-Frontend
+    container_name: otp-entrance-frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+
+  backend:
+    build: ./OTP-Entrance-Backend
+    container_name: otp-entrance-backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://host.docker.internal:3307/otpdb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: sabelo
+      SPRING_DATASOURCE_PASSWORD: Mychatharyan5!
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: "true"
+
+  db:
+    image: mysql:8.0
+    container_name: otp-db
+    restart: always
+    environment:
+      MYSQL_DATABASE: otpdb
+      MYSQL_USER: sabelo
+      MYSQL_PASSWORD: Mychatharyan5!
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:

@@ -89,13 +89,13 @@
 }
 
 .btn-custom {
-  background-color: #1b459a; /* purple */
+  background-color: #2c9c05; /* purple */
   color: #fff;              /* white text */
   border: none;
 }
 
 .btn-custom:hover {
-  background-color: #1b459a; /* darker purple on hover */
+  background-color: #2c9c05; /* darker purple on hover */
 }
 
 
