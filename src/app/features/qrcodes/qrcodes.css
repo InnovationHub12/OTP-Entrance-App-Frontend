@@ -1,3 +1,26 @@
+/* Top bar with icons only */
+.top-bar {
+  display: flex;
+  justify-content: space-between; /* home left, download right */
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.home-icon,
+.download-icon {
+  font-size: 24px;
+  color: #28a745; /* green */
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.home-icon:hover,
+.download-icon:hover {
+  transform: scale(1.1);
+  color: #1e7e34; /* darker green on hover */
+}
+
+/* Profile container */
 .profile-container {
   max-width: 400px;
   margin: auto;
@@ -9,7 +32,7 @@
   flex-direction: column;
   justify-content: space-between;
   min-height: 500px;
-  position: relative; /* allows absolute positioning inside */
+  position: relative;
 }
 
 .profile-details {
@@ -21,27 +44,27 @@
   height: 250px;
 }
 
-/* Home icon button */
-.home-btn {
-  top: 0px;
-  left: 8px;
-  background: none;
+/* Signout button */
+.signout-container {
+  margin-top: auto;
+  text-align: center;
+}
+
+.btn-small {
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  width: 100px;
+  text-align: center;
   border: none;
   cursor: pointer;
-  padding: 0;
+  background-color: #dc3545;
+  color: #fff;
 }
 
-.home-btn mat-icon {
-  font-size: 20px;      /* small size */
-  color: #28a745;       /* green */
-  transition: transform 0.2s ease, color 0.2s ease;
+.btn-small:hover {
+  background-color: #c82333;
 }
-
-.home-btn:hover mat-icon {
-  transform: scale(1.1);
-  color: #1e7e34;       /* darker green on hover */
-}
-
 
 /* Modal styling */
 .modal {
@@ -68,39 +91,4 @@
   float: right;
   font-size: 24px;
   cursor: pointer;
-}
-
-/* Buttons */
-.btn-small {
-  padding: 4px 10px;
-  font-size: 12px;
-  border-radius: 4px;
-  width: 100px;
-  text-align: center;
-  border: none;
-  cursor: pointer;
-}
-
-.btn-small {
-  background-color: #dc3545; /* danger red */
-  color: #fff;
-}
-
-.btn-small:hover {
-  background-color: #c82333; /* darker red */
-}
-
-.btn-custom {
-  background-color: #2c9c05; /* green */
-  color: #fff;
-  border: none;
-}
-
-.btn-custom:hover {
-  background-color: #267a04; /* darker green */
-}
-
-.signout-container {
-  margin-top: auto;
-  text-align: center;
 }

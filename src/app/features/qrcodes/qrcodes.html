@@ -1,11 +1,8 @@
 <div class="profile-container" *ngIf="userData?.success" (dblclick)="onDoubleClick()">
 
-  <button mat-icon-button class="home-btn" (click)="goHome()">
-    <mat-icon>home</mat-icon>
-  </button>
-
-  <div class="download-container">
-    <button class="btn btn-custom btn-small" (click)="downloadPdf()">Download Scan</button>
+  <div class="top-bar">
+    <mat-icon class="home-icon" (click)="goHome()">home</mat-icon>
+    <mat-icon class="download-icon" (click)="downloadPdf()">download</mat-icon>
   </div>
 
   <h2>User Profile</h2>
