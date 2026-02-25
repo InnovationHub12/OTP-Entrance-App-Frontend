@@ -23,14 +23,26 @@ button:hover {
   background-color: #004466;
 }
 
+/* ✅ Disabled state styling */
+button:disabled {
+  background-color: #cccccc; /* greyed out */
+  color: #666666;
+  cursor: not-allowed;       /* shows disabled cursor */
+}
+
+/* Prevent hover effect when disabled */
+button:disabled:hover {
+  background-color: #cccccc;
+}
+
 .snackbar-success {
-  background-color: #2e7d32; /* green */
-  color: #fff;
+  background-color: #4caf50; /* green */
+  color: white;
+  font-weight: bold;
 }
 
 .snackbar-error {
-  background-color: #c62828; /* red */
-  color: #fff;
+  background-color: #f44336; /* red */
+  color: white;
+  font-weight: bold;
 }
-
-

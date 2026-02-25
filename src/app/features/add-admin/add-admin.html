@@ -2,28 +2,24 @@
 <div class="add-admin-card">
   <h2>Add Admin</h2>
 
-  <form #adminForm="ngForm" (ngSubmit)="onSubmit(adminForm.value, adminForm)" novalidate>
+  <form novalidate>
     <label for="name">Initials and Surname</label>
-    <input type="text" id="name" name="name" ngModel placeholder="Enter initials and surname" required />
+    <input type="text" id="name" name="name" placeholder="Enter initials and surname" />
 
     <label for="idNumber">ID Number</label>
-    <input type="text" id="idNumber" name="idNumber" ngModel placeholder="Enter ID Number" required />
-
-    <label for="regNumber">Reg Number</label>
-    <input type="text" id="regNumber" name="regNumber" ngModel placeholder="Enter Registration Number" required />
+    <input type="text" id="idNumber" name="idNumber" placeholder="Enter ID Number" />
 
     <label for="password">Create Password</label>
-    <input type="password" id="password" name="password" ngModel placeholder="Create password" required />
+    <input type="password" id="password" name="password" placeholder="Create password" />
 
     <label for="confirmPassword">Confirm Password</label>
-    <input type="password" id="confirmPassword" name="confirmPassword" ngModel placeholder="Confirm password" required />
-
+    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm password" />
     <label for="role">Role</label>
-    <select id="role" name="role" ngModel required>
+    <select id="role" name="role" required>
       <option value="">-- Select Role --</option>
-      <option value="admin">Admin</option>
-    </select>
+      <option value="security">Admin</option>
 
+    </select>
     <button type="submit">REGISTER ADMIN</button>
   </form>
 </div>

@@ -29,17 +29,7 @@ export class Register {
   }
 
 onSubmit(): void {
-  // Check for empty/null values
-  if (!this.formData.name || !this.formData.regNumber || !this.formData.idNumber ||
-      !this.formData.password || !this.formData.confirmPassword || !this.formData.role) {
-    this.snackBar.open('⚠️ Please fill in all required fields!', 'Close', {
-      duration: 5000,
-      panelClass: ['snackbar-error']
-    });
-    return;
-  }
 
-  // Check password match
   if (this.formData.password !== this.formData.confirmPassword) {
     this.snackBar.open('Passwords do not match!', 'Close', {
       duration: 5000,
@@ -48,7 +38,6 @@ onSubmit(): void {
     return;
   }
 
-  // Call backend
   this.userService.registerUser({
     idNumber: this.formData.idNumber,
     name: this.formData.name,
@@ -67,10 +56,7 @@ onSubmit(): void {
       this.snackBar.open(
         'Registration failed: ' + (err.error?.message || 'Unknown error'),
         'Close',
-        {
-          duration: 5000,
-          panelClass: ['snackbar-error']
-        }
+        { duration: 5000, panelClass: ['snackbar-error'] }
       );
     }
   });

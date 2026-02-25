@@ -10,7 +10,7 @@
   <input type="text" id="idNumber" name="idNumber" [(ngModel)]="formData.idNumber" placeholder="ID Number" required minlength="13" />
 
   <label for="password">Create Password</label>
-  <input type="password" id="password" name="password" [(ngModel)]="formData.password" placeholder="Create Password" required minlength="8" />
+  <input type="password" id="password" name="password" [(ngModel)]="formData.password" placeholder="Create Password" required />
 
   <label for="confirmPassword">Confirm Password</label>
   <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="formData.confirmPassword" placeholder="Confirm Password" required />
@@ -22,9 +22,13 @@
     <option value="officials">Officials</option>
   </select>
 
-  <button type="submit" [disabled]="signupForm.invalid">SIGN UP</button>
+  <button type="submit"
+          [disabled]="signupForm.invalid"
+          title="Please complete all fields before signing up"
+  >SIGN UP</button>
 </form>
 
 <p>{{ message }}</p>
 
 <a routerLink="/login">Already have an account? Sign In</a>
+
