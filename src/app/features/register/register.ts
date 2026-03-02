@@ -18,7 +18,8 @@ export class Register {
     regNumber: '',
     password: '',
     role: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    email: ''
   };
 
   message: string = '';
@@ -43,7 +44,9 @@ onSubmit(): void {
     name: this.formData.name,
     regNumber: this.formData.regNumber,
     password: this.formData.password,
-    role: this.formData.role
+    role: this.formData.role,
+    email: this.formData.email
+
   }).subscribe({
     next: (res: { message: string }) => {
       this.snackBar.open(res.message || 'Registration successful!', 'Close', {

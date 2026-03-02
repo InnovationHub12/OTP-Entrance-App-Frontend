@@ -5,6 +5,15 @@
   <form #adminForm="ngForm" (ngSubmit)="onSubmit(adminForm.value, adminForm)" novalidate>
     <label for="name">Initials and Surname</label>
     <input type="text" id="name" name="name" [(ngModel)]="name" placeholder="Enter initials and surname" required />
+    <label for="email">Email Address</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      [(ngModel)]="email"
+      placeholder="Enter admin email"
+      required />
+
 
     <label for="idNumber">ID Number</label>
     <input type="text" id="idNumber" name="idNumber" [(ngModel)]="idNumber" placeholder="Enter ID Number" required />

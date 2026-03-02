@@ -15,6 +15,7 @@ regNumber: string = '';
 password: string = '';
 confirmPassword: string = '';
 role: string = '';
+email: string = '';
 constructor(
   private userService: UserService,
   private snackBar: MatSnackBar
@@ -32,9 +33,10 @@ onSubmit(form: any, adminForm?: any) {
   const newAdmin: User = {
     name: form.name,
     idNumber: form.idNumber,
-    regNumber: form.regNumber,   // ✅ now collected from form
+    regNumber: form.regNumber,
     password: form.password,
     role: form.role,
+    email: form.email
   };
 
   this.userService.registerUser(newAdmin).subscribe({
