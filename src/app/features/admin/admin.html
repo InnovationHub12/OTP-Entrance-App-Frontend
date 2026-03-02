@@ -4,7 +4,17 @@
   <div class="admin-card">
     <h2>All Users</h2>
 
-    <table class="users-table" *ngIf="users.length > 0; else noUsers">
+    <!-- Unified Search Bar -->
+    <div class="search-bar">
+      <label for="searchTerm">Search:</label>
+      <input id="searchTerm"
+             [(ngModel)]="searchTerm"
+             (input)="filterUsers()"
+             placeholder="Enter ID, registration, name, or role" />
+    </div>
+
+    <!-- Users Table -->
+    <table class="users-table" *ngIf="paginatedUsers.length > 0; else noUsers">
       <thead>
       <tr>
         <th>Name</th>
@@ -15,7 +25,8 @@
       </tr>
       </thead>
       <tbody>
-      <ng-container *ngFor="let user of users">
+      <ng-container *ngFor="let user of paginatedUsers">
+        <!-- User Row -->
         <tr>
           <td>{{ user.name }}</td>
           <td>{{ user.idNumber }}</td>
@@ -25,15 +36,20 @@
             <button class="btn delete-btn" (click)="deleteUser(user.idNumber)">
               Delete
             </button>
-            <button class="btn" (click)="toggleDropdown(user.idNumber)">
-              {{ expandedUserId === user.idNumber ? 'Hide Vehicle entry' : 'View Vehicle entry' }}
-            </button>
+
+            <!-- Dropdown arrow only if logs exist -->
+            <mat-icon *ngIf="userLogs[user.idNumber] && userLogs[user.idNumber].length > 0"
+                      class="dropdown-arrow"
+                      (click)="toggleDropdown(user.idNumber)">
+              {{ expandedUserId === user.idNumber ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
+            </mat-icon>
           </td>
         </tr>
 
+        <!-- Vehicle Entries shown only when expanded -->
         <tr *ngIf="expandedUserId === user.idNumber">
           <td colspan="5">
-            <table class="mini-table" *ngIf="userLogs[user.idNumber].length > 0; else noVehicles">
+            <table class="mini-table">
               <thead>
               <tr>
                 <th>Registration</th>
@@ -49,17 +65,22 @@
               </tr>
               </tbody>
             </table>
-            <ng-template #noVehicles>
-              <p>No vehicle entries found.</p>
-            </ng-template>
           </td>
         </tr>
       </ng-container>
       </tbody>
     </table>
 
+    <!-- No Users Fallback -->
     <ng-template #noUsers>
       <p>No users found.</p>
     </ng-template>
+
+    <!-- Paginator -->
+    <mat-paginator [length]="users.length"
+                   [pageSize]="pageSize"
+                   [pageSizeOptions]="[5, 10, 20]"
+                   (page)="onPageChange($event)">
+    </mat-paginator>
   </div>
 </div>

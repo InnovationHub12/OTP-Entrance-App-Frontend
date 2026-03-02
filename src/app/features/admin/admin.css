@@ -24,7 +24,7 @@
 }
 
 .users-table th {
-  background-color: #28a745;
+  background-color: #28a745; /* green header */
   color: white;
 }
 
@@ -40,6 +40,7 @@
 .delete-btn:hover {
   background-color: #d32f2f;
 }
+
 .mini-table {
   width: 100%;
   border-collapse: collapse;
@@ -54,6 +55,45 @@
 }
 
 .mini-table th {
-  background-color: #007bff;
+  background-color: #007bff; /* blue header */
   color: white;
+}
+
+/* Dropdown arrow styling */
+.dropdown-arrow {
+  cursor: pointer;
+  color: #4CAF50; /* branded green */
+  vertical-align: middle;
+  transition: transform 0.2s;
+}
+
+.dropdown-arrow:hover {
+  transform: scale(1.2);
+  color: #388E3C; /* darker hover green */
+}
+
+/* Unified search bar styling */
+.search-bar {
+  margin-bottom: 15px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+textarea {
+  width: 250px;       /* narrower width */
+  height: 60px;       /* smaller height */
+  resize: none;       /* prevent resizing (optional) */
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
 }

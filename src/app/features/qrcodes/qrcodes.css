@@ -72,3 +72,21 @@
   font-size: 24px;
   cursor: pointer;
 }
+
+
+.tooltiptext {
+  position: fixed;
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  opacity: 0.9;
+}
+
+.profile-container:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}

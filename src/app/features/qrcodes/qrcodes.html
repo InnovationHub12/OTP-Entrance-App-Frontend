@@ -1,6 +1,14 @@
-<div class="profile-container" *ngIf="userData?.success" (dblclick)="onDoubleClick()">
+<div class="profile-container"
+     *ngIf="userData?.success"
+     (dblclick)="onDoubleClick()"
+     (mousemove)="onMouseMove($event)">
 
-  <!-- Top bar with icons only -->
+  <span class="tooltiptext"
+        [style.left.px]="tooltipX"
+        [style.top.px]="tooltipY">
+    ⚠️ Double click to edit your registration number
+  </span>
+
   <div class="top-bar">
     <mat-icon class="home-icon" (click)="goHome()">home</mat-icon>
     <mat-icon class="download-icon" (click)="downloadPdf()">download</mat-icon>
@@ -19,8 +27,6 @@
     <img [src]="qrCodeUrl" alt="User QR Code" />
   </div>
 </div>
-
-<!-- Modal -->
 <div class="modal" *ngIf="showModal">
   <div class="modal-content">
     <span class="close" (click)="closeModal()">&times;</span>

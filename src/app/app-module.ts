@@ -17,7 +17,7 @@ import { AccessGranted } from './features/access-granted/access-granted';
 import { AddAdmin } from './features/add-admin/add-admin';
 import { Admin } from './features/admin/admin';
 import { Navbar } from './shared/navbar/navbar';
-
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -40,7 +40,8 @@ import { Navbar } from './shared/navbar/navbar';
     HttpClientModule,
     MatSnackBarModule,
     ZXingScannerModule,
-    MatIconModule
+    MatIconModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [App]

@@ -19,6 +19,8 @@ export class Qrcodes implements OnInit {
   userData: any;
   showModal = false;
   editableRegNumber: string = '';
+  tooltipX: number = 0;
+  tooltipY: number = 0;
 
   constructor(private vehicleLogService: VehicleLogService,
               private authService: AuthService,
@@ -42,6 +44,12 @@ export class Qrcodes implements OnInit {
   onDoubleClick(): void {
     this.showModal = true;
   }
+
+onMouseMove(event: MouseEvent) {
+  this.tooltipX = event.clientX + 15;
+  this.tooltipY = event.clientY + 15;
+}
+
 
   closeModal(): void {
     this.showModal = false;
