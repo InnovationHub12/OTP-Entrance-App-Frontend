@@ -9,9 +9,16 @@ import {User} from '../../Interfaces/user';
   styleUrl: './add-admin.css',
 })
 export class AddAdmin {
-
-constructor(private userService: UserService,
-            private snackBar: MatSnackBar) {}
+name: string = '';
+idNumber: string = '';
+regNumber: string = '';
+password: string = '';
+confirmPassword: string = '';
+role: string = '';
+constructor(
+  private userService: UserService,
+  private snackBar: MatSnackBar
+) {}
 
 onSubmit(form: any, adminForm?: any) {
   if (form.password !== form.confirmPassword) {
@@ -25,10 +32,9 @@ onSubmit(form: any, adminForm?: any) {
   const newAdmin: User = {
     name: form.name,
     idNumber: form.idNumber,
-    regNumber: form.regNumber,
+    regNumber: form.regNumber,   // ✅ now collected from form
     password: form.password,
     role: form.role,
-
   };
 
   this.userService.registerUser(newAdmin).subscribe({
@@ -39,7 +45,6 @@ onSubmit(form: any, adminForm?: any) {
         panelClass: ['success-snackbar']
       });
 
-      // ✅ Clear the form fields
       if (adminForm) {
         adminForm.reset();
       }
@@ -54,4 +59,6 @@ onSubmit(form: any, adminForm?: any) {
     }
   });
 }
+
+
 }
