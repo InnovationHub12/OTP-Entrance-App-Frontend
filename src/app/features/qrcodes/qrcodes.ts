@@ -33,7 +33,7 @@ export class Qrcodes implements OnInit {
       this.userData = JSON.parse(data);
 
       if (this.userData.qrCode) {
-        // ✅ Add prefix here
+
         this.qrCodeUrl = 'data:image/png;base64,' + this.userData.qrCode;
       } else {
         console.error('No QR code found in userData');

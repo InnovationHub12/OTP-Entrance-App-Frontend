@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { environment } from '../../environments/environment';
 export interface VehicleLogEntry {
   id?: number;
   registrationNumber: string;
@@ -15,11 +15,12 @@ export interface VehicleLogEntry {
   providedIn: 'root'
 })
 export class VehicleLogService {
-  private apiUrl = 'http://localhost:8080/api/vehicle-log';
+  private apiUrl = `${environment.apiUrl}/vehicle-log`;
+  private usersUrl = `${environment.apiUrl}/users`;
 
   constructor(private http: HttpClient) {}
 
-  // Log a new vehicle entry linked to a user by idNumber
+
   logEntry(idNumber: number, entry: VehicleLogEntry): Observable<any> {
     return this.http.post(`${this.apiUrl}/entry/${idNumber}`, entry);
   }
@@ -36,7 +37,7 @@ export class VehicleLogService {
 
   updateRegNumber(idNumber: string, regNumber: string) {
     return this.http.put<{ success: boolean; message: string; regNumber: string }>(
-      'http://localhost:8080/api/users/updateRegNumber',
+      `${this.usersUrl}/updateRegNumber`,
       { idNumber, regNumber }
     );
   }

@@ -55,13 +55,15 @@
                 <th>Registration</th>
                 <th>Entry Date</th>
                 <th>Entry Time</th>
+                <th>Exit Time</th>
               </tr>
               </thead>
               <tbody>
               <tr *ngFor="let log of userLogs[user.idNumber]">
                 <td>{{ log.registrationNumber }}</td>
-                <td>{{ log.entryDate }}</td>
-                <td>{{ log.entryTime }}</td>
+                <td>{{ log.entryTime | date:'yyyy-MM-dd':'Africa/Johannesburg' }}</td>
+                <td>{{ log.entryTime | date:'HH:mm:ss':'Africa/Johannesburg' }}</td>
+                <td *ngIf="log.exitTime">{{ log.exitTime | date:'HH:mm:ss':'Africa/Johannesburg' }}</td>
               </tr>
               </tbody>
             </table>

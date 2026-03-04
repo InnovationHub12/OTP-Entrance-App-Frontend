@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../services/auth-service';
 import {Router} from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-forgot-password',
@@ -14,7 +15,7 @@ export class ForgotPassword {
   otp: string = '';
   newPassword: string = '';
   otpSent: boolean = false;
-
+  private usersUrl = `${environment.apiUrl}/users`;
 
   constructor(private http: HttpClient,
     private authService : AuthService,
@@ -22,7 +23,7 @@ export class ForgotPassword {
 ) {}
 
  requestOtp(): void {
-   this.http.post('http://localhost:8080/api/users/forgot-password', {
+   this.http.post(`${this.usersUrl}/forgot-password`, {
      email: this.email
    }).subscribe({
      next: (res: any) => {
@@ -36,7 +37,7 @@ export class ForgotPassword {
  }
 
 resetPassword(): void {
-  this.http.post('http://localhost:8080/api/users/reset-password-with-otp', {
+  this.http.post(`${this.usersUrl}/reset-password-with-otp`, {
     email: this.email,
     otp: this.otp,
     newPassword: this.newPassword

@@ -4,6 +4,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import { BarcodeFormat } from '@zxing/library'
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-scan-qr',
@@ -17,6 +18,8 @@ export class ScanQR {
   scannedRegNumber: string = '';
   logs: any[] = [];
   idNumber: string = '';
+  private vehicleLogUrl = `${environment.apiUrl}/vehicle-log`;
+
   constructor(private authService: AuthService,
               private http: HttpClient,
               private snackBar: MatSnackBar,
@@ -40,7 +43,7 @@ export class ScanQR {
           this.router.navigate(['/access-granted'], { queryParams: { name: res.user.name } });
 
           // Log vehicle entry
-          this.http.post(`http://localhost:8080/api/vehicle-log/entry/${res.user.idNumber}`, {
+          this.http.post(`${this.vehicleLogUrl}/entry/${res.user.idNumber}`, {
             registrationNumber: res.user.regNumber
           }).subscribe({
             next: () => this.updateVehicleTable(),
@@ -68,7 +71,7 @@ export class ScanQR {
 
 
   updateVehicleTable(): void {
-    this.http.get<any[]>('/api/vehicle-log/today').subscribe({
+    this.http.get<any[]>(`${this.vehicleLogUrl}/today`).subscribe({
       next: (data) => {
         this.logs = data; // update table data source
       },
@@ -93,8 +96,8 @@ export class ScanQR {
           // 🔹 Navigate to success page with user name
           this.router.navigate(['/access-granted'], { queryParams: { name: res.name } });
 
-          // Optionally still log vehicle entry if backend requires it
-          this.http.post(`http://localhost:8080/api/vehicle-log/entry/${res.idNumber}`, {
+
+          this.http.post(`${this.vehicleLogUrl}/entry/${res.idNumber}`, {
             registrationNumber: res.regNumber
           }).subscribe({
             next: () => this.updateVehicleTable(),

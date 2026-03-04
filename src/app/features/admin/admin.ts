@@ -19,12 +19,12 @@ export class Admin implements OnInit {
   pageSize = 5;
   currentPage = 0;
   searchTerm: string = '';
+
   constructor(
     private userService: UserService,
     private snackBar: MatSnackBar,
     private logService: VehicleLogService
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     this.loadUsers();
@@ -92,11 +92,12 @@ export class Admin implements OnInit {
   }
 
 
-updatePaginatedUsers() {
+updatePaginatedUsers(): void {
   const startIndex = this.currentPage * this.pageSize;
   const endIndex = startIndex + this.pageSize;
   this.paginatedUsers = this.users.slice(startIndex, endIndex);
 }
+
 
 filterUsers(): void {
   const term = this.searchTerm.trim().toLowerCase();
@@ -115,9 +116,10 @@ filterUsers(): void {
   this.paginatedUsers = sourceList.slice(startIndex, endIndex);
 }
 
-onPageChange(event: PageEvent) {
+onPageChange(event: PageEvent): void {
   this.pageSize = event.pageSize;
   this.currentPage = event.pageIndex;
   this.filterUsers();
 }
+
 }
