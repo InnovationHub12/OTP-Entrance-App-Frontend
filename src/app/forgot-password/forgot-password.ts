@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../services/auth-service';
 import {Router} from '@angular/router';
 import { environment } from '../../environments/environment';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-forgot-password',
@@ -20,6 +21,7 @@ export class ForgotPassword {
   constructor(private http: HttpClient,
     private authService : AuthService,
      private router: Router,
+     private cdRef: ChangeDetectorRef
 ) {}
 
  requestOtp(): void {
@@ -29,6 +31,7 @@ export class ForgotPassword {
      next: (res: any) => {
        this.otpSent = true;
        alert(res.message);
+       this.cdRef.detectChanges();
      },
      error: (err) => {
        alert(err.error?.message || 'Error sending OTP');
