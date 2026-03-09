@@ -13,10 +13,11 @@ import { environment } from '../../../environments/environment';
   styleUrl: './scan-qr.css',
 })
 export class ScanQR {
-  viewMode: 'scanner' | 'login' = 'scanner';
+viewMode: 'scanner' | 'login' | 'exit' = 'scanner';
   allowedFormats = [BarcodeFormat.QR_CODE];
   scannedRegNumber: string = '';
   logs: any[] = [];
+  exitIdNumber: string = '';
   idNumber: string = '';
   private vehicleLogUrl = `${environment.apiUrl}/vehicle-log`;
 
@@ -129,6 +130,30 @@ export class ScanQR {
   showLogin(): void {
     this.viewMode = 'login';
   }
+
+onExit(): void {
+  this.http.put(`${this.vehicleLogUrl}/edit/${this.exitIdNumber}`, {
+    registrationNumber: this.scannedRegNumber || null
+  }).subscribe({
+    next: (res: any) => {
+      this.snackBar.open('Exit logged successfully!', 'Close', {
+        duration: 3000,
+        panelClass: ['snackbar-success'],
+      });
+      this.updateVehicleTable();
+    },
+    error: () => {
+      this.snackBar.open('Failed to log exit', 'Close', {
+        duration: 5000,
+        panelClass: ['snackbar-error'],
+      });
+    }
+  });
+}
+
+showExit(): void {
+  this.viewMode = 'exit';
+}
 
 
 }

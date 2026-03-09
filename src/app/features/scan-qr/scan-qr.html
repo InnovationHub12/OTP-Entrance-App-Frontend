@@ -13,8 +13,14 @@
         Log in using ID Number
       </a>
     </li>
+    <li>
+      <a (click)="showExit()" [class.active]="viewMode === 'exit'">
+        Log Vehicle Exit
+      </a>
+    </li>
   </ul>
 </nav>
+
 
 <div *ngIf="viewMode === 'scanner'">
   <h2>Scan User QR Code</h2>
@@ -44,5 +50,25 @@
     </div>
 
     <button type="submit" [disabled]="loginForm.invalid">Log In</button>
+  </form>
+</div>
+<div *ngIf="viewMode === 'exit'">
+  <h2>Log Vehicle Exit</h2>
+  <form (ngSubmit)="onExit()" #exitForm="ngForm" novalidate>
+    <label for="exitIdNumber">ID Number</label>
+    <input
+      type="text"
+      id="exitIdNumber"
+      name="exitIdNumber"
+      [(ngModel)]="exitIdNumber"
+      placeholder="Enter your ID Number"
+      required
+      #exitIdCtrl="ngModel"
+    />
+    <div *ngIf="exitIdCtrl.invalid && exitIdCtrl.touched" class="error">
+      ID Number is required.
+    </div>
+
+    <button type="submit" [disabled]="exitForm.invalid">Log Exit</button>
   </form>
 </div>
