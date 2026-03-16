@@ -1,0 +1,83 @@
+<app-navbar></app-navbar>
+
+<div class="admin-wrapper">
+  <div class="admin-card">
+    <h2>State Vehicles</h2>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <label for="searchTerm">Search:</label>
+      <input
+        id="searchTerm"
+        [(ngModel)]="searchTerm"
+        (input)="filterVehicles()"
+        placeholder="Enter registration, driver name, or kilometers"
+      />
+    </div>
+
+    <!-- Vehicles Table -->
+    <table class="users-table" *ngIf="paginatedVehicles.length > 0; else noVehicles">
+      <thead>
+      <tr>
+        <th>Registration</th>
+        <th>Driver</th>
+        <th>Start Km</th>
+        <th>End Km</th>
+        <th>Exit Time</th>
+        <th>Entrance Time</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr
+        *ngFor="let v of paginatedVehicles"
+        (contextmenu)="openContextMenu($event, v)"
+      >
+        <td>{{ v.vehicleRegistration }}</td>
+        <td>{{ v.driverName }}</td>
+        <td>{{ v.startKm }}</td>
+        <td>{{ v.endKm }}</td>
+        <td>{{ v.exitTime | date:'yyyy-MM-dd HH:mm:ss':'Africa/Johannesburg' }}</td>
+        <td>{{ v.entranceTime | date:'yyyy-MM-dd HH:mm:ss':'Africa/Johannesburg' }}</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <ng-template #noVehicles>
+      <p>No state vehicles found.</p>
+    </ng-template>
+
+    <!-- Paginator -->
+    <mat-paginator
+      [length]="vehicles.length"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="[5,10,20]"
+      (page)="onPageChange($event)"
+    >
+    </mat-paginator>
+  </div>
+</div>
+
+<!-- CONTEXT MENU -->
+<mat-menu #vehicleMenu="matMenu">
+  <button mat-menu-item (click)="edit(selectedVehicle)">
+    Edit
+  </button>
+
+  <button mat-menu-item (click)="deleteVehicle(selectedVehicle)">
+    Delete Vehicle
+  </button>
+
+  <button mat-menu-item (click)="viewDetails(selectedVehicle)">
+    View Details
+  </button>
+</mat-menu>
+
+<!-- Hidden Trigger Positioned at Mouse -->
+<div
+  #menuTrigger="matMenuTrigger"
+  [matMenuTriggerFor]="vehicleMenu"
+  class="context-menu-trigger"
+  [style.left]="menuTopLeftPosition.x"
+  [style.top]="menuTopLeftPosition.y"
+></div>

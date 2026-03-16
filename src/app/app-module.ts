@@ -18,6 +18,8 @@ import { AddAdmin } from './features/add-admin/add-admin';
 import { Admin } from './features/admin/admin';
 import { Navbar } from './shared/navbar/navbar';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { StateVehicleLog } from './features/state-vehicle-log/state-vehicle-log';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     AccessGranted,
     AddAdmin,
     Admin,
-    Navbar
+    Navbar,
+    StateVehicleLog
   ],
   imports: [
     BrowserModule,
@@ -42,6 +45,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     ZXingScannerModule,
     MatIconModule,
     MatPaginatorModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [App]

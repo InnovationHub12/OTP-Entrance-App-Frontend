@@ -9,12 +9,15 @@ import {Register} from './features/register/register';
 import {AccessGranted} from './features/access-granted/access-granted';
 import {Admin} from './features/admin/admin';
 import {AddAdmin} from './features/add-admin/add-admin';
+import { StateVehicleLog } from './features/state-vehicle-log/state-vehicle-log';
+
 
 const routes: Routes = [
   { path: 'register', component: Register },
   { path: 'login', component: LogIn },
   { path: 'scan', component: ScanQR },
   { path: 'home', component: Home },
+  { path: 'state', component: StateVehicleLog },
   {path: 'admin',component: Admin},
   {path: 'add-admin',component: AddAdmin},
   { path: 'access-granted', component: AccessGranted },
