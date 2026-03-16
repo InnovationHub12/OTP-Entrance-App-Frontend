@@ -2,8 +2,12 @@
 .navbar {
   background-color: #2e7d32; /* rich green */
   padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* links left, logo right */
 }
 
+/* Navigation links */
 .navbar ul {
   list-style: none;
   display: flex;
@@ -31,4 +35,15 @@
 
 .navbar a.active {
   background-color: #43a047; /* lighter green highlight for active link */
+}
+
+
+.navbar-logo {
+  width: 50px;
+  height: 50px;
+  background-image: url("../../../assets/images/emblem.PNG"); /* match actual filename */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-left: 20px; /* spacing from right edge */
 }

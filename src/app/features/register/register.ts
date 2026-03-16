@@ -53,7 +53,7 @@ onSubmit(): void {
         duration: 5000,
         panelClass: ['snackbar-success']
       });
-      this.router.navigate(['/signin']);
+      this.router.navigate(['/login']);
     },
     error: (err: { error: { message: any } }) => {
       this.snackBar.open(

@@ -168,4 +168,3 @@ export interface VerifyQrResponse {
     role: string;
   };
 }
-
