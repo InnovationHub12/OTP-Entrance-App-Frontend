@@ -98,7 +98,7 @@ this.router.navigate(['/state-entry']);
             panelClass: ['snackbar-success'],
           });
 
-          // 🔹 Navigate to success page with user name
+
           this.router.navigate(['/access-granted'], { queryParams: { name: res.name } });
 
 

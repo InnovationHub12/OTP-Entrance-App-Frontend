@@ -6,6 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { environment } from '../../../environments/environment';
 import { PageEvent } from '@angular/material/paginator';
 import { StateVehicleDialog } from '../state-vehicle-dialog/state-vehicle-dialog';
+import { StateCarLogService }from '../../services/state-car-log-service';
+
 @Component({
   selector: 'app-state-vehicle-log',
   standalone: false,
@@ -29,7 +31,8 @@ export class StateVehicleLog implements OnInit {
     constructor(
       private http: HttpClient,
       private snackBar: MatSnackBar,
-      private dialog: MatDialog
+      private dialog: MatDialog,
+      private stateCarLogService: StateCarLogService
     ) {}
 
     ngOnInit(): void {
@@ -67,17 +70,23 @@ export class StateVehicleLog implements OnInit {
       });
     }
 
-    deleteVehicle(vehicle: any): void {
-      this.http.delete(`${this.stateCarUrl}/${vehicle.id}`).subscribe({
-        next: () => {
-          this.snackBar.open(`Vehicle ${vehicle.vehicleRegistration} deleted`, 'Close', { duration: 3000 });
-          this.loadVehicles(); // refresh list
-        },
-        error: () => {
-          this.snackBar.open('Failed to delete vehicle', 'Close', { duration: 5000 });
-        }
-      });
+deleteVehicle(vehicle: any): void {
+  this.stateCarLogService.deleteLog(vehicle.id).subscribe({
+    next: (res: any) => {
+      this.snackBar.open(
+        `Vehicle ${vehicle.vehicleRegistration} deleted successfully`,
+        'Close',
+        { duration: 3000 }
+      );
+      this.loadVehicles(); // refresh list
+    },
+    error: (err: any) => {
+      const message = err.error?.message || 'Failed to delete vehicle';
+      this.snackBar.open(message, 'Close', { duration: 5000 });
     }
+  });
+}
+
 
     filterVehicles(): void {
       const term = this.searchTerm.trim().toLowerCase();

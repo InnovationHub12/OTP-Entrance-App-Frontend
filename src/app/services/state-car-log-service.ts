@@ -34,4 +34,9 @@ private apiUrl = 'http://localhost:8080/api/state-cars';
   getLog(id: number): Observable<StateCarLog> {
     return this.http.get<StateCarLog>(`${this.apiUrl}/log/${id}`);
   }
+/** Delete a log by ID */
+deleteLog(id: number): Observable<any> {
+  return this.http.delete(`${this.apiUrl}/${id}`);
+}
+
 }
