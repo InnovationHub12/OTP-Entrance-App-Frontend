@@ -10,6 +10,7 @@ import {AccessGranted} from './features/access-granted/access-granted';
 import {Admin} from './features/admin/admin';
 import {AddAdmin} from './features/add-admin/add-admin';
 import { StateVehicleLog } from './features/state-vehicle-log/state-vehicle-log';
+import { StateVehicleEntry } from './features/state-vehicle-entry/state-vehicle-entry';
 
 
 const routes: Routes = [
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'login', component: LogIn },
   { path: 'scan', component: ScanQR },
   { path: 'home', component: Home },
-  { path: 'state', component: StateVehicleLog },
+  { path: 'state-entry', component: StateVehicleEntry },
+  { path: 'state-vehicle', component: StateVehicleLog },
   {path: 'admin',component: Admin},
   {path: 'add-admin',component: AddAdmin},
   { path: 'access-granted', component: AccessGranted },

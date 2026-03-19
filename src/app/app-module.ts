@@ -20,6 +20,8 @@ import { Navbar } from './shared/navbar/navbar';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { StateVehicleLog } from './features/state-vehicle-log/state-vehicle-log';
 import { MatMenuModule } from '@angular/material/menu';
+import { StateVehicleDialog } from './features/state-vehicle-dialog/state-vehicle-dialog';
+import { StateVehicleEntry } from './features/state-vehicle-entry/state-vehicle-entry';
 
 @NgModule({
   declarations: [
@@ -28,13 +30,16 @@ import { MatMenuModule } from '@angular/material/menu';
     Qrcodes,
     ForgotPassword,
     ScanQR,
+
     LogIn,
     Register,
     AccessGranted,
     AddAdmin,
     Admin,
     Navbar,
-    StateVehicleLog
+    StateVehicleLog,
+    StateVehicleDialog,
+    StateVehicleEntry
   ],
   imports: [
     BrowserModule,

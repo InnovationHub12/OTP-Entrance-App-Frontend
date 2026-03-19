@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>State Vehicle Details</h2>
+
+<div mat-dialog-content>
+  <p><strong>Registration:</strong> <span>{{ data.vehicleRegistration }}</span></p>
+  <p><strong>Driver:</strong> <span>{{ data.driverName }}</span></p>
+  <p><strong>User ID Number:</strong> <span>{{ data.userIdNumber }}</span></p>
+  <p><strong>Start Km:</strong> <span>{{ data.startKm }}</span></p>
+  <p><strong>End Km:</strong> <span>{{ data.endKm }}</span></p>
+  <p><strong>Destination:</strong> <span>{{ data.destination }}</span></p>
+  <p><strong>Exit Time:</strong>
+    <span>{{ data.exitTime | date:'yyyy-MM-dd HH:mm:ss':'Africa/Johannesburg' }}</span>
+  </p>
+  <p><strong>Entrance Time:</strong>
+    <span>{{ data.entranceTime | date:'yyyy-MM-dd HH:mm:ss':'Africa/Johannesburg' }}</span>
+  </p>
+  <p><strong>Comment:</strong> <span>{{ data.comment || 'No comment' }}</span></p>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button class="close-btn" (click)="close()">
+    Close
+  </button>
+</div>

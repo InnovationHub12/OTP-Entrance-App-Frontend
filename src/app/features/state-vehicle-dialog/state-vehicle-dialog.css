@@ -1,0 +1,76 @@
+/* ===== DIALOG CONTAINER ===== */
+.custom-dialog .mat-mdc-dialog-container {
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* ===== TITLE (CENTERED) ===== */
+.custom-dialog h2[mat-dialog-title] {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #28a745;
+}
+
+/* ===== CONTENT ===== */
+.custom-dialog [mat-dialog-content] {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 0;
+}
+
+.custom-dialog [mat-dialog-content] p {
+  margin: 12px 0;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.custom-dialog [mat-dialog-content] strong {
+  color: #1e7e34;
+}
+
+/* ===== ACTIONS (BOTTOM RIGHT) ===== */
+.custom-dialog [mat-dialog-actions] {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+.custom-dialog [mat-dialog-actions] button {
+  width: auto !important;
+  min-width: 110px;
+}
+
+/* 🔴 RED CLOSE BUTTON ===== */
+.custom-dialog .mat-mdc-raised-button.mat-warn {
+  background-color: #dc3545 !important;
+  color: white !important;
+  border-radius: 6px;
+  padding: 8px 18px;
+  font-weight: 500;
+}
+
+.custom-dialog .mat-mdc-raised-button.mat-warn:hover {
+  background-color: #c82333 !important;
+}
+
+/* Close button styling */
+.close-btn {
+  background-color: #f44336; /* red */
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  background-color: #d32f2f; /* darker red on hover */
+}

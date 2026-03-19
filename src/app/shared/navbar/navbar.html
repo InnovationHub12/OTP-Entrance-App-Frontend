@@ -1,17 +1,23 @@
-<nav class="navbar">
-  <div class="navbar-logo"></div>
+<!-- Admin Navbar -->
+<nav class="navbar" *ngIf="isAdminView()">
+  <div class="navbar-logo">Admin Portal</div>
   <ul>
-    <li>
-      <a routerLink="/home" routerLinkActive="active">Home</a>
-    </li>
-    <li>
-      <a routerLink="/add-admin" routerLinkActive="active">Add Admin</a>
-    </li>
-    <li>
-      <a routerLink="/admin" routerLinkActive="active">View Staff</a>
-    </li>
-    <li>
-      <a routerLink="/state" routerLinkActive="active">View State Vehicle</a>
-    </li>
+    <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+    <li><a routerLink="/add-admin" routerLinkActive="active">Add Admin</a></li>
+    <li><a routerLink="/admin" routerLinkActive="active">View Staff</a></li>
+    <li><a routerLink="/state-vehicle" routerLinkActive="active">View State Vehicle</a></li>
   </ul>
 </nav>
+
+<!-- Security Navbar -->
+<nav class="navbar" *ngIf="isSecurityView()">
+  <div class="navbar-logo">Security Portal</div>
+  <ul>
+    <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+    <li>
+      <a routerLink="/scan" routerLinkActive="active">Scan QR Code</a>
+    </li>
+    <li><a routerLink="/state-vehicle" routerLinkActive="active">Log State Vehicle</a></li>
+  </ul>
+</nav>
+

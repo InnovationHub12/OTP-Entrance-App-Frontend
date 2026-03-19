@@ -1,0 +1,62 @@
+<app-navbar></app-navbar>
+<h2>State Vehicle</h2>
+
+<form (ngSubmit)="addEntry()" #entryForm="ngForm" class="entry-form">
+
+  <!-- STEP 1: BASIC INPUT -->
+  <label>Vehicle Registration:</label>
+  <input type="text"
+         [(ngModel)]="newEntry.vehicleRegistration"
+         name="vehicleRegistration"
+         required />
+
+  <label>User ID Number:</label>
+  <input type="text"
+         [(ngModel)]="newEntry.userIdNumber"
+         name="userIdNumber"
+         required />
+
+  <button type="button" (click)="checkPhase()">
+    Check Phase
+  </button>
+
+  <p *ngIf="loading">Checking...</p>
+
+  <!-- EXIT PHASE -->
+  <div *ngIf="phase === 'exit'">
+    <h3>Exit Phase</h3>
+
+    <label>Start KM:</label>
+    <input type="number"
+           [(ngModel)]="newEntry.startKm"
+           name="startKm"
+           required />
+
+    <label>Destination:</label>
+    <input type="text"
+           [(ngModel)]="newEntry.destination"
+           name="destination"
+           required />
+  </div>
+
+  <!-- RETURN PHASE -->
+  <div *ngIf="phase === 'return'">
+    <h3>Return Phase</h3>
+
+    <p><strong>Start KM:</strong> {{ newEntry.startKm }}</p>
+
+    <label>End KM:</label>
+    <input type="number"
+           [(ngModel)]="newEntry.endKm"
+           name="endKm"
+           required />
+  </div>
+
+  <br>
+
+  <button type="submit" [disabled]="!phase">
+    Save Entry
+  </button>
+
+</form>
+

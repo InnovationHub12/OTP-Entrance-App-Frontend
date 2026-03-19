@@ -1,0 +1,32 @@
+.entry-form {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.entry-form label {
+  font-weight: bold;
+  align-self: center;
+}
+
+.entry-form input {
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.entries-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.entries-table th, .entries-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.entries-table th {
+  background-color: #28a745;
+  color: white;
+}

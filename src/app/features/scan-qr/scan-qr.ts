@@ -74,7 +74,7 @@ viewMode: 'scanner' | 'login' | 'exit' = 'scanner';
   updateVehicleTable(): void {
     this.http.get<any[]>(`${this.vehicleLogUrl}/today`).subscribe({
       next: (data) => {
-        this.logs = data; // update table data source
+        this.logs = data;
       },
       error: () => {
         this.snackBar.open('Failed to refresh vehicle log table', 'Close', {
@@ -84,6 +84,10 @@ viewMode: 'scanner' | 'login' | 'exit' = 'scanner';
       }
     });
   }
+
+stateVehicle(){
+this.router.navigate(['/state-entry']);
+}
 
   onLogin(): void {
     this.authService.loginWithId(this.idNumber).subscribe({
