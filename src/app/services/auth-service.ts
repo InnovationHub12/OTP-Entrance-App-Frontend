@@ -44,6 +44,9 @@ private otpUrl = `${environment.apiUrl}/otp`;
   getRole(): string | null {
     return this.role ?? localStorage.getItem('role');
   }
+ isLoggedIn(): boolean {
+    return !!localStorage.getItem('idNumber');
+  }
 
 }
 export interface LoginResponse {
@@ -54,5 +57,6 @@ export interface LoginResponse {
   surname: string;
   regNumber: string;
   qrCode: string;
+  idNumber: string;
 }
 

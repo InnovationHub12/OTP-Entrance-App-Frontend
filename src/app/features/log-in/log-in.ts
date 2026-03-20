@@ -37,12 +37,14 @@ export class LogIn {
             panelClass: ['snackbar-success']
           });
 
-          // Save user data
-          localStorage.setItem('userData', JSON.stringify(res));
-          localStorage.setItem('role', res.role);
+          // ✅ Save user data for guard checks
+          localStorage.setItem('idNumber', res.idNumber);
+          localStorage.setItem('regNumber', res.regNumber);
+          localStorage.setItem('qrCode', res.qrCode);
+          this.authService.setRole(res.role);
 
-            this.router.navigate(['/home']);
-
+          // ✅ After login, all guarded routes are accessible
+          this.router.navigate(['/home']);
         } else {
           this.snackBar.open(res.message || 'Login failed', 'Close', {
             duration: 8000,
@@ -58,5 +60,6 @@ export class LogIn {
       }
     });
   }
+
 
 }
