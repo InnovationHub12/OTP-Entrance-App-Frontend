@@ -1,25 +1,36 @@
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #f5f6fa;
+/* Global page styling */
+html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
   color: #28a745; /* Green text globally */
+
+  /* Global background image */
+  background-color: #f5f6fa; /* fallback color */
+  background-image: url('/assets/images/back.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
+/* Headings */
 h2 {
   text-align: center;
   color: #28a745; /* Green headings */
 }
 
+/* Form container */
 form {
   max-width: 400px;
-  margin: 20px auto;
+  margin: 40px auto;
   padding: 20px;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.9); /* translucent white */
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
+/* Inputs */
 input {
   width: 100%;
   padding: 10px;
@@ -30,6 +41,7 @@ input {
   color: #28a745; /* Green text inside inputs */
 }
 
+/* Buttons */
 button {
   width: 100%;
   padding: 12px;
@@ -46,6 +58,12 @@ button:hover {
   background-color: #218838;   /* Darker green on hover */
 }
 
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Links */
 a {
   display: block;
   text-align: center;

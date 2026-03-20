@@ -19,7 +19,7 @@
 .download-icon:hover,
 .signout-icon:hover {
   transform: scale(1.1);
-  color: #1e7e34; /* darker green on hover */
+  color: #1e7e34;
 }
 
 /* Profile container */
@@ -28,6 +28,7 @@
   margin: auto;
   text-align: center;
   padding: 20px;
+  background: #ffffff;
   border: 1px solid #ddd;
   border-radius: 8px;
   display: flex;
@@ -35,6 +36,7 @@
   justify-content: space-between;
   min-height: 500px;
   position: relative;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .profile-details {
@@ -73,7 +75,7 @@
   cursor: pointer;
 }
 
-
+/* Tooltip styling */
 .tooltiptext {
   position: fixed;
   background-color: #4CAF50;
