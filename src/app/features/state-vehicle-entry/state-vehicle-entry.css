@@ -1,3 +1,17 @@
+.entry-container {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.form-section {
+  flex: 1;
+}
+
+.camera-section {
+  flex: 1;
+}
+
 .entry-form {
   display: grid;
   grid-template-columns: 150px 1fr;
@@ -16,17 +30,24 @@
   border-radius: 4px;
 }
 
-.entries-table {
-  width: 100%;
-  border-collapse: collapse;
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
 }
 
-.entries-table th, .entries-table td {
+.previews {
+  margin-top: 20px;
+}
+
+.preview-row {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.preview-item img {
+  max-width: 200px;
   border: 1px solid #ccc;
-  padding: 8px;
-}
-
-.entries-table th {
-  background-color: #28a745;
-  color: white;
+  margin: 5px;
 }

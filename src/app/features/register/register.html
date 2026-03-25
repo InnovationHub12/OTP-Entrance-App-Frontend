@@ -1,5 +1,6 @@
-<h2>Sign Up</h2>
+
 <form (ngSubmit)="onSubmit()" #signupForm="ngForm" novalidate>
+  <h2>Sign Up</h2>
   <label for="name">Initials and Surname</label>
   <input type="text" id="name" name="name" [(ngModel)]="formData.name" placeholder="Initials and Surname" required />
   <label for="email">Email Address:</label>
@@ -38,9 +39,9 @@
     <span class="tooltiptext">⚠️ Please complete all fields before signing up</span>
   </button>
 
+  <p>{{ message }}</p>
+
+  <a routerLink="/login">Already have an account? Sign In</a>
 </form>
 
-<p>{{ message }}</p>
-
-<a routerLink="/login">Already have an account? Sign In</a>
 

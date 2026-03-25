@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { StateCarLogService, StateCarLog }from '../../services/state-car-log-service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { VehicleImageService } from '../../services/vehicle-image-service';
 
 @Component({
   selector: 'app-state-vehicle-entry',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class StateVehicleEntry {
  entries: StateCarLog[] = [];
-
+   imagesCaptured = false;
    phase: 'exit' | 'return' | null = null;
 
    newEntry: StateCarLog = {
@@ -23,11 +24,30 @@ export class StateVehicleEntry {
 
    loading = false;
 
-   constructor(private logService: StateCarLogService,
-     private snackBar: MatSnackBar,
-     private router: Router) {}
+   video!: HTMLVideoElement;
+   canvas!: HTMLCanvasElement;
+   stream!: MediaStream;
+   images: string[] = [];
+   step = 0;
+   steps = ['Front', 'Back', 'Left', 'Right'];
 
-  checkPhase(): void {
+   constructor(
+     private logService: StateCarLogService,
+     private snackBar: MatSnackBar,
+     private imageService: VehicleImageService
+   ) {}
+
+   ngOnInit(): void {
+
+     this.video = document.querySelector('video')!;
+     this.canvas = document.querySelector('canvas')!;
+   }
+
+   ngOnDestroy(): void {
+     this.stopCamera();
+   }
+
+   checkPhase(): void {
      if (!this.newEntry.vehicleRegistration || !this.newEntry.userIdNumber) {
        this.snackBar.open('Enter Vehicle Registration and ID Number', 'Close', { duration: 3000 });
        return;
@@ -84,14 +104,29 @@ export class StateVehicleEntry {
        this.logService.createLog(payload).subscribe({
          next: (saved) => {
            this.entries.push(saved);
+
+           if (this.imagesCaptured) {
+             this.imageService.uploadImages(
+               this.newEntry.vehicleRegistration,
+               this.newEntry.userIdNumber,
+               this.phase!,
+               this.images
+             ).then(() => {
+               this.snackBar.open('✅ Log and images saved successfully!', 'Close', { duration: 3000 });
+             }).catch((err: any) => {
+               this.snackBar.open(`❌ Log saved but image upload failed: ${err.message}`, 'Close', { duration: 4000 });
+             });
+           } else {
+             this.snackBar.open('✅ Log saved successfully!', 'Close', { duration: 3000 });
+           }
+
            this.resetForm();
-           this.snackBar.open('Exit log saved successfully!', 'Close', { duration: 3000 });
-           this.router.navigate(['/scan']); // Navigate to scan page
          },
          error: (err) => {
            this.snackBar.open(err.error?.message || 'Failed to save exit log', 'Close', { duration: 4000 });
          }
        });
+
      } else if (this.phase === 'return') {
        if (this.newEntry.endKm == null || this.newEntry.endKm < this.newEntry.startKm!) {
          this.snackBar.open('End KM must be greater than Start KM', 'Close', { duration: 4000 });
@@ -107,9 +142,23 @@ export class StateVehicleEntry {
        this.logService.createLog(payload).subscribe({
          next: (saved) => {
            this.entries.push(saved);
+
+           if (this.imagesCaptured) {
+             this.imageService.uploadImages(
+               this.newEntry.vehicleRegistration,
+               this.newEntry.userIdNumber,
+               this.phase!,
+               this.images
+             ).then(() => {
+               this.snackBar.open('✅ Log and images saved successfully!', 'Close', { duration: 3000 });
+             }).catch((err: any) => {
+               this.snackBar.open(`❌ Log saved but image upload failed: ${err.message}`, 'Close', { duration: 4000 });
+             });
+           } else {
+             this.snackBar.open('✅ Log saved successfully!', 'Close', { duration: 3000 });
+           }
+
            this.resetForm();
-           this.snackBar.open('Return log saved successfully!', 'Close', { duration: 3000 });
-           this.router.navigate(['/scan']); // Navigate to scan page
          },
          error: (err) => {
            this.snackBar.open(err.error?.message || 'Failed to save return log', 'Close', { duration: 4000 });
@@ -117,6 +166,62 @@ export class StateVehicleEntry {
        });
      }
    }
+
+   async openCamera(): Promise<void> {
+     if (!this.phase) {
+       this.snackBar.open('Please check phase first', 'Close', { duration: 3000 });
+       return;
+     }
+
+     try {
+       this.stream = await navigator.mediaDevices.getUserMedia({ video: true });
+       this.video.srcObject = this.stream;
+       this.video.play();
+     } catch (err) {
+       this.snackBar.open('Camera access denied or not available', 'Close', { duration: 3000 });
+     }
+   }
+
+   stopCamera(): void {
+     if (this.stream) {
+       this.stream.getTracks().forEach(track => track.stop());
+     }
+   }
+
+  capture(): void {
+    const context = this.canvas.getContext('2d');
+    if (!context) return;
+
+    this.canvas.width = this.video.videoWidth;
+    this.canvas.height = this.video.videoHeight;
+
+    context.drawImage(this.video, 0, 0);
+    const imageData = this.canvas.toDataURL('image/png');
+    this.images.push(imageData);
+
+    this.step++;
+
+    if (this.step === 4) {
+      this.stopCamera();
+      this.snackBar.open('✅ All 4 images captured. Now click Save Entry.', 'Close', { duration: 3000 });
+      this.imagesCaptured = true;
+    }
+  }
+
+
+  retake(): void {
+    if (this.step > 0) {
+      this.step--;
+      this.images.pop();
+
+      if (!this.stream || this.stream.getTracks().every(track => track.readyState === 'ended')) {
+        this.openCamera();
+      }
+
+      this.snackBar.open(`📸 Retake ${this.steps[this.step]} image`, 'Close', { duration: 2000 });
+    }
+  }
+
 
    resetForm(): void {
      this.newEntry = {
@@ -127,5 +232,8 @@ export class StateVehicleEntry {
        endKm: undefined
      };
      this.phase = null;
+     this.images = [];
+     this.step = 0;
+     this.imagesCaptured = false;
    }
 }

@@ -1,62 +1,68 @@
 <app-navbar></app-navbar>
-<h2>State Vehicle</h2>
 
-<form (ngSubmit)="addEntry()" #entryForm="ngForm" class="entry-form">
+<div class="entry-container">
+  <!-- Left side: Form -->
+  <div class="form-section">
+    <h2>State Vehicle Entry</h2>
+    <form (ngSubmit)="addEntry()" #entryForm="ngForm" class="entry-form">
+      <label>Vehicle Registration:</label>
+      <input type="text" [(ngModel)]="newEntry.vehicleRegistration" name="vehicleRegistration" required />
 
-  <!-- STEP 1: BASIC INPUT -->
-  <label>Vehicle Registration:</label>
-  <input type="text"
-         [(ngModel)]="newEntry.vehicleRegistration"
-         name="vehicleRegistration"
-         required />
+      <label>User ID Number:</label>
+      <input type="text" [(ngModel)]="newEntry.userIdNumber" name="userIdNumber" required />
 
-  <label>User ID Number:</label>
-  <input type="text"
-         [(ngModel)]="newEntry.userIdNumber"
-         name="userIdNumber"
-         required />
+      <button type="button" (click)="checkPhase()">Check Phase</button>
+      <p *ngIf="loading">Checking...</p>
 
-  <button type="button" (click)="checkPhase()">
-    Check Phase
-  </button>
+      <!-- Exit Phase -->
+      <div *ngIf="phase === 'exit'">
+        <h3>Exit Phase</h3>
+        <label>Start KM:</label>
+        <input type="number" [(ngModel)]="newEntry.startKm" name="startKm" required />
+        <label>Destination:</label>
+        <input type="text" [(ngModel)]="newEntry.destination" name="destination" required />
+      </div>
 
-  <p *ngIf="loading">Checking...</p>
+      <!-- Return Phase -->
+      <div *ngIf="phase === 'return'">
+        <h3>Return Phase</h3>
+        <p><strong>Start KM:</strong> {{ newEntry.startKm }}</p>
+        <label>End KM:</label>
+        <input type="number" [(ngModel)]="newEntry.endKm" name="endKm" required />
+      </div>
 
-  <!-- EXIT PHASE -->
-  <div *ngIf="phase === 'exit'">
-    <h3>Exit Phase</h3>
-
-    <label>Start KM:</label>
-    <input type="number"
-           [(ngModel)]="newEntry.startKm"
-           name="startKm"
-           required />
-
-    <label>Destination:</label>
-    <input type="text"
-           [(ngModel)]="newEntry.destination"
-           name="destination"
-           required />
+      <br>
+      <button type="submit" [disabled]="!phase || !imagesCaptured">
+        Save Entry
+      </button>
+    </form>
   </div>
 
-  <!-- RETURN PHASE -->
-  <div *ngIf="phase === 'return'">
-    <h3>Return Phase</h3>
+  <!-- Right side: Camera -->
+  <div class="camera-section">
+    <h2>Capture Vehicle - {{ phase | uppercase }}</h2>
+    <p><strong>Vehicle:</strong> {{ newEntry.vehicleRegistration }}</p>
+    <p><strong>Step:</strong> {{ steps[step] }}</p>
 
-    <p><strong>Start KM:</strong> {{ newEntry.startKm }}</p>
+    <video autoplay playsinline></video>
+    <canvas style="display:none;"></canvas>
 
-    <label>End KM:</label>
-    <input type="number"
-           [(ngModel)]="newEntry.endKm"
-           name="endKm"
-           required />
+    <div class="buttons">
+      <button type="button" (click)="openCamera()" [disabled]="!phase">Open Camera</button>
+      <button type="button" (click)="capture()" [disabled]="step >= 4 || !phase">Capture {{ steps[step] }}</button>
+      <button type="button" (click)="retake()" [disabled]="step === 0">Retake</button>
+    </div>
+
+    <p *ngIf="step === 4">✅ All 4 images captured</p>
   </div>
+</div>
 
-  <br>
-
-  <button type="submit" [disabled]="!phase">
-    Save Entry
-  </button>
-
-</form>
-
+<div class="previews" *ngIf="images.length > 0">
+  <h3>Captured Previews</h3>
+  <div class="preview-row">
+    <div *ngFor="let img of images; let i = index" class="preview-item">
+      <p>{{ steps[i] }}</p>
+      <img [src]="img" alt="{{ steps[i] }} preview">
+    </div>
+  </div>
+</div>

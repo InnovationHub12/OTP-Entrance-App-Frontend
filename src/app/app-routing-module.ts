@@ -13,6 +13,7 @@ import { StateVehicleLog } from './features/state-vehicle-log/state-vehicle-log'
 import { StateVehicleEntry } from './features/state-vehicle-entry/state-vehicle-entry';
 import { authGuard } from './auth-guard';
 
+
 const routes: Routes = [
   { path: 'register', component: Register },
   { path: 'scan', component: ScanQR , canActivate: [authGuard] },

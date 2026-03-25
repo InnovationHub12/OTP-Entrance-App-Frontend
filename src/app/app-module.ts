@@ -22,6 +22,7 @@ import { StateVehicleLog } from './features/state-vehicle-log/state-vehicle-log'
 import { MatMenuModule } from '@angular/material/menu';
 import { StateVehicleDialog } from './features/state-vehicle-dialog/state-vehicle-dialog';
 import { StateVehicleEntry } from './features/state-vehicle-entry/state-vehicle-entry';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { StateVehicleEntry } from './features/state-vehicle-entry/state-vehicle-
     Navbar,
     StateVehicleLog,
     StateVehicleDialog,
-    StateVehicleEntry
+    StateVehicleEntry,
+
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { StateVehicleEntry } from './features/state-vehicle-entry/state-vehicle-
     ZXingScannerModule,
     MatIconModule,
     MatPaginatorModule,
-    MatMenuModule
+    MatMenuModule,
+    RouterModule.forRoot([])
   ],
   providers: [],
   bootstrap: [App]

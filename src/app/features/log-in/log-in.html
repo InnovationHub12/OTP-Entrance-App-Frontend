@@ -1,5 +1,6 @@
-<h2>Sign In</h2>
+
 <form (ngSubmit)="onSubmit()" #signinForm="ngForm" novalidate>
+  <h2>Sign In</h2>
   <label for="idNumber">ID Number</label>
   <input
     type="text"
@@ -29,9 +30,11 @@
   </div>
 
   <button type="submit" [disabled]="signinForm.invalid">SIGN IN</button>
+
+  <div class="links">
+    <a href="/register">Register new account! Sign Up</a>
+    <a href="/forgot-password">Forgot Password?</a>
+  </div>
 </form>
 
-<div class="links">
-  <a href="/register">Register new account! Sign Up</a> |
-  <a href="/forgot-password">Forgot Password?</a>
-</div>
+
