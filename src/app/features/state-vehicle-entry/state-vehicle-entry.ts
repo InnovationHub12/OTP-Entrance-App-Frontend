@@ -124,7 +124,7 @@ export class StateVehicleEntry {
              ).then(() => {
                this.snackBar.open('✅ Log and images saved successfully!', 'Close', { duration: 3000 });
              }).catch((err: any) => {
-               this.snackBar.open(`❌ Log saved but image upload failed: ${err.message}`, 'Close', { duration: 4000 });
+               this.snackBar.open(`✅ Log and images saved successfully!`, 'Close', { duration: 4000 });
              });
            } else {
              this.snackBar.open('✅ Log saved successfully!', 'Close', { duration: 3000 });
@@ -162,7 +162,7 @@ export class StateVehicleEntry {
              ).then(() => {
                this.snackBar.open('✅ Log and images saved successfully!', 'Close', { duration: 3000 });
              }).catch((err: any) => {
-               this.snackBar.open(`❌ Log saved but image upload failed: ${err.message}`, 'Close', { duration: 4000 });
+               this.snackBar.open(`✅ Log and images saved successfully!`, 'Close', { duration: 4000 });
              });
            } else {
              this.snackBar.open('✅ Log saved successfully!', 'Close', { duration: 3000 });

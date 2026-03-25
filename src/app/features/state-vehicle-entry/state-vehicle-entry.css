@@ -1,17 +1,39 @@
+
+body {
+  background-color: #121212;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* ✅ Container layout */
 .entry-container {
   display: flex;
   gap: 40px;
   align-items: flex-start;
+  padding: 20px;
 }
+
 
 .form-section {
   flex: 1;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  color: black;
 }
+
 
 .camera-section {
   flex: 1;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  color: black;
 }
 
+/* ✅ Entry form grid */
 .entry-form {
   display: grid;
   grid-template-columns: 150px 1fr;
@@ -22,13 +44,38 @@
 .entry-form label {
   font-weight: bold;
   align-self: center;
+  color: black;
 }
 
 .entry-form input {
   padding: 6px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  background-color: #f9f9f9;
+  color: black;
 }
+
+
+button {
+  background-color: #2e7d32; /* green */
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #1b5e20;
+}
+
+button:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+
 
 .buttons {
   display: flex;
@@ -36,18 +83,33 @@
   margin-top: 10px;
 }
 
+
 .previews {
   margin-top: 20px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  color: black;
 }
 
 .preview-row {
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.preview-item p {
+  color: black;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .preview-item img {
-  max-width: 200px;
+  max-width: 120px;
+  max-height: 90px;
   border: 1px solid #ccc;
   margin: 5px;
+  border-radius: 4px;
+  object-fit: cover;
 }
