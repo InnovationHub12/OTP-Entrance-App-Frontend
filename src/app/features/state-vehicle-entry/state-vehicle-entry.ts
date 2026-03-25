@@ -35,7 +35,8 @@ export class StateVehicleEntry {
      private logService: StateCarLogService,
      private snackBar: MatSnackBar,
      private imageService: VehicleImageService,
-     private cd: ChangeDetectorRef
+     private cd: ChangeDetectorRef,
+     private router : Router
    ) {}
 
    ngOnInit(): void {
@@ -125,6 +126,7 @@ export class StateVehicleEntry {
                this.snackBar.open('✅ Log and images saved successfully!', 'Close', { duration: 3000 });
              }).catch((err: any) => {
                this.snackBar.open(`✅ Log and images saved successfully!`, 'Close', { duration: 4000 });
+               this.router.navigate(['/scan'])
              });
            } else {
              this.snackBar.open('✅ Log saved successfully!', 'Close', { duration: 3000 });
@@ -163,6 +165,8 @@ export class StateVehicleEntry {
                this.snackBar.open('✅ Log and images saved successfully!', 'Close', { duration: 3000 });
              }).catch((err: any) => {
                this.snackBar.open(`✅ Log and images saved successfully!`, 'Close', { duration: 4000 });
+               this.router.navigate(['/scan'])
+
              });
            } else {
              this.snackBar.open('✅ Log saved successfully!', 'Close', { duration: 3000 });
