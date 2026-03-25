@@ -38,5 +38,9 @@ private apiUrl = 'http://localhost:8080/api/state-cars';
 deleteLog(id: number): Observable<any> {
   return this.http.delete(`${this.apiUrl}/${id}`);
 }
+getVehicleImages(userId: string, registration: string) {
+  return this.http.get<string[]>(`http://localhost:8080/api/images/${userId}/${registration}`);
+}
+
 
 }

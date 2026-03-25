@@ -1,6 +1,6 @@
 <!-- Admin Navbar -->
 <nav class="navbar" *ngIf="isAdminView()">
-  <div class="navbar-logo">Admin Portal</div>
+  <a routerLink="/home" class="navbar-logo"></a>
   <ul>
     <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
     <li><a routerLink="/add-admin" routerLinkActive="active">Add Admin</a></li>
@@ -9,15 +9,15 @@
   </ul>
 </nav>
 
-<!-- Security Navbar -->
+
 <nav class="navbar" *ngIf="isSecurityView()">
-  <div class="navbar-logo">Security Portal</div>
+  <a routerLink="/home" class="navbar-logo"></a>
   <ul>
     <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
     <li>
       <a routerLink="/scan" routerLinkActive="active">Scan QR Code</a>
     </li>
-    <li><a routerLink="/state-vehicle" routerLinkActive="active">Log State Vehicle</a></li>
+    <li><a routerLink="/state-entry" routerLinkActive="active">Log State Vehicle</a></li>
   </ul>
 </nav>
 

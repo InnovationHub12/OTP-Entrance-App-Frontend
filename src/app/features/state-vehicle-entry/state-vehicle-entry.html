@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 
 <div class="entry-container">
-  <!-- Left side: Form -->
+
   <div class="form-section">
     <h2>State Vehicle Entry</h2>
     <form (ngSubmit)="addEntry()" #entryForm="ngForm" class="entry-form">
@@ -14,7 +14,6 @@
       <button type="button" (click)="checkPhase()">Check Phase</button>
       <p *ngIf="loading">Checking...</p>
 
-      <!-- Exit Phase -->
       <div *ngIf="phase === 'exit'">
         <h3>Exit Phase</h3>
         <label>Start KM:</label>
@@ -23,7 +22,7 @@
         <input type="text" [(ngModel)]="newEntry.destination" name="destination" required />
       </div>
 
-      <!-- Return Phase -->
+
       <div *ngIf="phase === 'return'">
         <h3>Return Phase</h3>
         <p><strong>Start KM:</strong> {{ newEntry.startKm }}</p>
@@ -38,7 +37,6 @@
     </form>
   </div>
 
-  <!-- Right side: Camera -->
   <div class="camera-section">
     <h2>Capture Vehicle - {{ phase | uppercase }}</h2>
     <p><strong>Vehicle:</strong> {{ newEntry.vehicleRegistration }}</p>

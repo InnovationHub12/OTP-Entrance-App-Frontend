@@ -1,25 +1,34 @@
+<h2 mat-dialog-title>
+  Vehicle Details - {{ data.vehicleRegistration }}
+</h2>
 
+<mat-dialog-content class="dialog-content">
+  <!-- Left side: User details -->
+  <div class="details-section">
+    <p><strong>Driver:</strong> {{ data.driverName }}</p>
+    <p><strong>ID Number:</strong> {{ data.userIdNumber }}</p>
+    <p><strong>Start Km:</strong> {{ data.startKm }}</p>
+    <p><strong>End Km:</strong> {{ data.endKm }}</p>
+    <p><strong>Exit Time:</strong> {{ data.exitTime | date:'yyyy-MM-dd HH:mm:ss':'Africa/Johannesburg' }}</p>
+    <p><strong>Entrance Time:</strong> {{ data.entranceTime | date:'yyyy-MM-dd HH:mm:ss':'Africa/Johannesburg' }}</p>
+  </div>
 
-<div mat-dialog-content>
-  <h2 mat-dialog-title>State Vehicle Details</h2>
+  <!-- Right side: Image viewer -->
+  <div class="image-section" *ngIf="data.images && data.images.length > 0">
+    <p><strong>{{ currentStep }}</strong></p>
+    <img [src]="currentImage" alt="Vehicle image" />
 
-  <p><strong>Registration:</strong> <span>{{ data.vehicleRegistration }}</span></p>
-  <p><strong>Driver:</strong> <span>{{ data.driverName }}</span></p>
-  <p><strong>User ID Number:</strong> <span>{{ data.userIdNumber }}</span></p>
-  <p><strong>Start Km:</strong> <span>{{ data.startKm }}</span></p>
-  <p><strong>End Km:</strong> <span>{{ data.endKm }}</span></p>
-  <p><strong>Destination:</strong> <span>{{ data.destination }}</span></p>
-  <p><strong>Exit Time:</strong>
-    <span>{{ data.exitTime | date:'yyyy-MM-dd HH:mm:ss':'Africa/Johannesburg' }}</span>
+    <div class="nav-buttons">
+      <button mat-button (click)="prevImage()" [disabled]="currentIndex === 0">Previous</button>
+      <button mat-button (click)="nextImage()" [disabled]="currentIndex === data.images.length - 1">Next</button>
+    </div>
+  </div>
+
+  <p *ngIf="!data.images || data.images.length === 0">
+    No images available for this vehicle.
   </p>
-  <p><strong>Entrance Time:</strong>
-    <span>{{ data.entranceTime | date:'yyyy-MM-dd HH:mm:ss':'Africa/Johannesburg' }}</span>
-  </p>
-  <p><strong>Comment:</strong> <span>{{ data.comment || 'No comment' }}</span></p>
-</div>
+</mat-dialog-content>
 
-<div mat-dialog-actions>
-  <button mat-raised-button class="close-btn" (click)="close()">
-    Close
-  </button>
-</div>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close color="warn">Close</button>
+</mat-dialog-actions>

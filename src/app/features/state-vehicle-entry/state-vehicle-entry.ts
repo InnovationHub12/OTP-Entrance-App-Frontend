@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { StateCarLogService, StateCarLog }from '../../services/state-car-log-service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -34,13 +34,22 @@ export class StateVehicleEntry {
    constructor(
      private logService: StateCarLogService,
      private snackBar: MatSnackBar,
-     private imageService: VehicleImageService
+     private imageService: VehicleImageService,
+     private cd: ChangeDetectorRef
    ) {}
 
    ngOnInit(): void {
-
      this.video = document.querySelector('video')!;
      this.canvas = document.querySelector('canvas')!;
+   }
+
+   ngAfterViewInit(): void {
+     setTimeout(() => {
+       if (!this.newEntry.vehicleRegistration) {
+         this.newEntry.vehicleRegistration = '';
+         this.cd.detectChanges();
+       }
+     });
    }
 
    ngOnDestroy(): void {
@@ -77,6 +86,7 @@ export class StateVehicleEntry {
          }
 
          this.loading = false;
+         this.cd.detectChanges();
        },
        error: () => {
          this.snackBar.open('Failed to check logs', 'Close', { duration: 4000 });
@@ -208,7 +218,6 @@ export class StateVehicleEntry {
     }
   }
 
-
   retake(): void {
     if (this.step > 0) {
       this.step--;
@@ -222,7 +231,6 @@ export class StateVehicleEntry {
     }
   }
 
-
    resetForm(): void {
      this.newEntry = {
        vehicleRegistration: '',
@@ -235,5 +243,6 @@ export class StateVehicleEntry {
      this.images = [];
      this.step = 0;
      this.imagesCaptured = false;
+     this.cd.detectChanges();
    }
 }

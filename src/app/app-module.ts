@@ -23,6 +23,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { StateVehicleDialog } from './features/state-vehicle-dialog/state-vehicle-dialog';
 import { StateVehicleEntry } from './features/state-vehicle-entry/state-vehicle-entry';
 import { RouterModule } from '@angular/router';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @NgModule({
   declarations: [
@@ -53,7 +56,9 @@ import { RouterModule } from '@angular/router';
     MatIconModule,
     MatPaginatorModule,
     MatMenuModule,
-    RouterModule.forRoot([])
+    RouterModule.forRoot([]),
+    MatDialogModule,
+        MatButtonModule
   ],
   providers: [],
   bootstrap: [App]

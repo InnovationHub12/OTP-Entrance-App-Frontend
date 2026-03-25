@@ -26,12 +26,8 @@
         <th>Entrance Time</th>
       </tr>
       </thead>
-
       <tbody>
-      <tr
-        *ngFor="let v of paginatedVehicles"
-        (contextmenu)="openContextMenu($event, v)"
-      >
+      <tr *ngFor="let v of paginatedVehicles" (contextmenu)="openContextMenu($event, v)">
         <td>{{ v.vehicleRegistration }}</td>
         <td>{{ v.driverName }}</td>
         <td>{{ v.startKm }}</td>
@@ -51,30 +47,21 @@
       [length]="vehicles.length"
       [pageSize]="pageSize"
       [pageSizeOptions]="[5,10,20]"
-      (page)="onPageChange($event)"
-    >
+      (page)="onPageChange($event)">
     </mat-paginator>
   </div>
 </div>
 
 <!-- CONTEXT MENU -->
-
 <mat-menu #vehicleMenu="matMenu">
-  <button mat-menu-item (click)="viewDetails(selectedVehicle)">
-    View Details
-  </button>
-  <button mat-menu-item (click)="deleteVehicle(selectedVehicle)">
-    Delete Vehicle
-  </button>
-
-
+  <button mat-menu-item (click)="viewDetails(selectedVehicle)">View Details</button>
+  <button mat-menu-item (click)="deleteVehicle(selectedVehicle)">Delete Vehicle</button>
 </mat-menu>
-
 
 <div
   #menuTrigger="matMenuTrigger"
   [matMenuTriggerFor]="vehicleMenu"
   class="context-menu-trigger"
   [style.left]="menuTopLeftPosition.x"
-  [style.top]="menuTopLeftPosition.y"
-></div>
+  [style.top]="menuTopLeftPosition.y">
+</div>

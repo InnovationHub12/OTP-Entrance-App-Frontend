@@ -15,7 +15,9 @@ import { StateCarLogService }from '../../services/state-car-log-service';
   styleUrl: './state-vehicle-log.css',
 })
 export class StateVehicleLog implements OnInit {
-   vehicles: any[] = [];
+   steps = ['Front', 'Back', 'Left', 'Right'];
+    currentIndex = 0;
+  vehicles: any[] = [];
     paginatedVehicles: any[] = [];
     pageSize = 5;
     currentPage = 0;
@@ -61,32 +63,46 @@ export class StateVehicleLog implements OnInit {
       }
     }
 
-    viewDetails(vehicle: any): void {
-      this.dialog.open(StateVehicleDialog, {
-        width: '700px',
-        maxWidth: '95vw',
-        panelClass: 'custom-dialog',
-        data: vehicle
+ viewDetails(vehicle: any): void {
+   this.stateCarLogService.getVehicleImages(vehicle.userIdNumber, vehicle.vehicleRegistration)
+     .subscribe({
+       next: (images: string[]) => {
+         this.dialog.open(StateVehicleDialog, {
+           width: '800px',
+           maxWidth: '95vw',
+           panelClass: 'custom-dialog',
+           data: { ...vehicle, images }
+         });
+       },
+       error: () => {
+         this.snackBar.open('Failed to load vehicle images', 'Close', { duration: 4000 });
+         this.dialog.open(StateVehicleDialog, {
+           width: '800px',
+           maxWidth: '95vw',
+           panelClass: 'custom-dialog',
+           data: { ...vehicle, images: [] }
+         });
+       }
+     });
+ }
+
+
+    deleteVehicle(vehicle: any): void {
+      this.stateCarLogService.deleteLog(vehicle.id).subscribe({
+        next: () => {
+          this.snackBar.open(
+            `Vehicle ${vehicle.vehicleRegistration} deleted successfully`,
+            'Close',
+            { duration: 3000 }
+          );
+          this.loadVehicles(); // refresh list
+        },
+        error: (err: any) => {
+          const message = err.error?.message || 'Failed to delete vehicle';
+          this.snackBar.open(message, 'Close', { duration: 5000 });
+        }
       });
     }
-
-deleteVehicle(vehicle: any): void {
-  this.stateCarLogService.deleteLog(vehicle.id).subscribe({
-    next: (res: any) => {
-      this.snackBar.open(
-        `Vehicle ${vehicle.vehicleRegistration} deleted successfully`,
-        'Close',
-        { duration: 3000 }
-      );
-      this.loadVehicles(); // refresh list
-    },
-    error: (err: any) => {
-      const message = err.error?.message || 'Failed to delete vehicle';
-      this.snackBar.open(message, 'Close', { duration: 5000 });
-    }
-  });
-}
-
 
     filterVehicles(): void {
       const term = this.searchTerm.trim().toLowerCase();
