@@ -124,6 +124,7 @@ export class StateVehicleEntry {
                this.images
              ).then(() => {
                this.snackBar.open('✅ Log and images saved successfully!', 'Close', { duration: 3000 });
+               this.router.navigate(['/scan'])
              }).catch((err: any) => {
                this.snackBar.open(`✅ Log and images saved successfully!`, 'Close', { duration: 4000 });
                this.router.navigate(['/scan'])
@@ -163,6 +164,7 @@ export class StateVehicleEntry {
                this.images
              ).then(() => {
                this.snackBar.open('✅ Log and images saved successfully!', 'Close', { duration: 3000 });
+               this.router.navigate(['/scan'])
              }).catch((err: any) => {
                this.snackBar.open(`✅ Log and images saved successfully!`, 'Close', { duration: 4000 });
                this.router.navigate(['/scan'])

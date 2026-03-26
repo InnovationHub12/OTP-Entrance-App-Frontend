@@ -10,7 +10,7 @@
         id="searchTerm"
         [(ngModel)]="searchTerm"
         (input)="filterVehicles()"
-        placeholder="Enter registration, driver name, or kilometers"
+        placeholder="Enter registration, driver name, kilometers or Total Distance"
       />
     </div>
 
@@ -22,6 +22,7 @@
         <th>Driver</th>
         <th>Start Km</th>
         <th>End Km</th>
+        <th>Total Distance</th>
         <th>Exit Time</th>
         <th>Entrance Time</th>
       </tr>
@@ -32,6 +33,7 @@
         <td>{{ v.driverName }}</td>
         <td>{{ v.startKm }}</td>
         <td>{{ v.endKm }}</td>
+        <td>{{ v.totalDistance }}</td>
         <td>{{ v.exitTime | date:'yyyy-MM-dd HH:mm:ss':'Africa/Johannesburg' }}</td>
         <td>{{ v.entranceTime | date:'yyyy-MM-dd HH:mm:ss':'Africa/Johannesburg' }}</td>
       </tr>

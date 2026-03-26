@@ -104,20 +104,23 @@ export class StateVehicleLog implements OnInit {
       });
     }
 
-    filterVehicles(): void {
-      const term = this.searchTerm.trim().toLowerCase();
-      const sourceList = term
-        ? this.vehicles.filter(v =>
-            v.vehicleRegistration.toLowerCase().includes(term) ||
-            v.driverName.toLowerCase().includes(term) ||
-            v.startKm.toString().includes(term) ||
-            v.endKm.toString().includes(term)
-          )
-        : this.vehicles;
+   filterVehicles(): void {
+     const term = this.searchTerm.trim().toLowerCase();
 
-      const startIndex = this.currentPage * this.pageSize;
-      this.paginatedVehicles = sourceList.slice(startIndex, startIndex + this.pageSize);
-    }
+     const sourceList = term
+       ? this.vehicles.filter(v =>
+           v.vehicleRegistration.toLowerCase().includes(term) ||
+           v.driverName.toLowerCase().includes(term) ||
+           (v.startKm && v.startKm.toString().includes(term)) ||
+           (v.endKm && v.endKm.toString().includes(term)) ||
+           (v.totalDistance && v.totalDistance.toString().includes(term))
+         )
+       : this.vehicles;
+
+     const startIndex = this.currentPage * this.pageSize;
+     this.paginatedVehicles = sourceList.slice(startIndex, startIndex + this.pageSize);
+   }
+
 
     updatePaginatedVehicles(): void {
       const startIndex = this.currentPage * this.pageSize;

@@ -40,7 +40,7 @@ export class Home {
   isDisabled(button: string): boolean {
     if (this.role === 'security' && button === 'admin')
       return true;
-    if (this.role === 'officials' && (button === 'security' || button === 'admin'))
+    if (this.role === 'officials'||this.role ==='Visitor' && (button === 'security' || button === 'admin'))
       return true;
     return false;
   }
