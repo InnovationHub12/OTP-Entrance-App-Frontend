@@ -122,4 +122,7 @@ onPageChange(event: PageEvent): void {
   this.filterUsers();
 }
 
+viewUser(idNumber: string): void {
+  this.expandedUserId = this.expandedUserId === idNumber ? null : idNumber;
+}
 }

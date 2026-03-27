@@ -21,7 +21,7 @@
         <th>ID Number</th>
         <th>Role</th>
         <th>Reg Number</th>
-        <th>Actions</th>
+        <th>Options</th>
       </tr>
       </thead>
       <tbody>
@@ -33,20 +33,26 @@
           <td>{{ user.role }}</td>
           <td>{{ user.regNumber }}</td>
           <td>
-            <button class="btn delete-btn" (click)="deleteUser(user.idNumber)">
-              Delete
+            <!-- Context Menu Trigger -->
+            <button mat-icon-button [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()">
+              <mat-icon>more_vert</mat-icon>
             </button>
 
-            <!-- Dropdown arrow only if logs exist -->
-            <mat-icon *ngIf="userLogs[user.idNumber] && userLogs[user.idNumber].length > 0"
-                      class="dropdown-arrow"
-                      (click)="toggleDropdown(user.idNumber)">
-              {{ expandedUserId === user.idNumber ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
-            </mat-icon>
+            <!-- Context Menu -->
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="viewUser(user.idNumber)"
+                      [disabled]="!userLogs[user.idNumber] || userLogs[user.idNumber].length === 0">
+                <mat-icon>visibility</mat-icon>
+                <span>View Logs</span>
+              </button>
+              <button mat-menu-item (click)="deleteUser(user.idNumber)">
+                <mat-icon>delete</mat-icon>
+                <span>Delete</span>
+              </button>
+            </mat-menu>
           </td>
         </tr>
 
-        <!-- Vehicle Entries shown only when expanded -->
         <tr *ngIf="expandedUserId === user.idNumber">
           <td colspan="5">
             <table class="mini-table">
