@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../../services/auth-service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-home',
@@ -10,7 +12,9 @@ import {AuthService} from '../../services/auth-service';
 })
 export class Home {
   role: string | null = null;
-  constructor(private router: Router, private authService: AuthService)
+  constructor(private router: Router,
+    private authService: AuthService,
+    private snackBar: MatSnackBar)
   {
     const storedRole = localStorage.getItem('role');
 
@@ -44,4 +48,9 @@ export class Home {
       return true;
     return false;
   }
+logout(): void {
+  localStorage.clear();
+  this.router.navigate(['/login']);
+}
+
 }

@@ -56,8 +56,12 @@
 
 <!-- CONTEXT MENU -->
 <mat-menu #vehicleMenu="matMenu">
-  <button mat-menu-item (click)="viewDetails(selectedVehicle)">View Details</button>
-  <button mat-menu-item (click)="deleteVehicle(selectedVehicle)">Delete Vehicle</button>
+  <button mat-menu-item (click)="viewDetails(selectedVehicle)">View Details
+    <mat-icon>visibility</mat-icon>
+  </button>
+  <button mat-menu-item (click)="deleteVehicle(selectedVehicle)">Delete Vehicle
+    <mat-icon>delete</mat-icon>
+  </button>
 </mat-menu>
 
 <div

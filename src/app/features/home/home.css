@@ -44,7 +44,7 @@
   text-align: center;
 }
 
-/* Button styling */
+/* General button styling */
 button {
   background: transparent;
   border: none;
@@ -56,6 +56,7 @@ button:disabled {
   cursor: not-allowed;
 }
 
+/* Role buttons */
 .admin-btn img,
 .secure-btn img,
 .employee-btn img {
@@ -79,4 +80,25 @@ button:disabled {
   display: block;
   text-decoration: underline;
   text-underline-offset: 4px;
+}
+
+/* Logout button pinned top right */
+.logout-wrapper {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.logout-wrapper button {
+  background-color: #d9534f; /* red for logout */
+  color: #fff;
+  border-radius: 5px;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.logout-wrapper button:hover {
+  background-color: #c9302c;
 }

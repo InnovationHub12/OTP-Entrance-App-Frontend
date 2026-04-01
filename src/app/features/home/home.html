@@ -1,4 +1,12 @@
 <div class="bg-container">
+  <!-- Logout Button in top right -->
+  <div class="logout-wrapper">
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      Log out
+    </button>
+  </div>
+
   <h1 class="Welcome-header">Welcome to OTP Entrance</h1>
   <div class="roles-box">
     <div class="admin-wrapper">
@@ -8,7 +16,6 @@
       <span class="admin-label">Admin</span>
     </div>
 
-    <!-- Security Button -->
     <div class="secure-wrapper">
       <button class="secure-btn" [disabled]="isDisabled('security')" (click)="goToScan()">
         <img src="assets/images/security.jpg" alt="Security Icon" class="secure-icon" />
@@ -16,7 +23,6 @@
       <span class="secure-label">Security</span>
     </div>
 
-    <!-- Employee Button -->
     <div class="employee-wrapper">
       <button class="employee-btn" [disabled]="isDisabled('official')" (click)="goToQrCode()">
         <img src="assets/images/brief.jpg" alt="Employee Icon" class="employee-icon" />
