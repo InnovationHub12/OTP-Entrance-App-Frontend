@@ -3,7 +3,6 @@
   <div class="admin-card">
     <h2>State Vehicles Logs</h2>
 
-    <!-- Search Bar -->
     <div class="search-bar">
       <label for="searchTerm">Search:</label>
       <input
@@ -14,7 +13,6 @@
       />
     </div>
 
-    <!-- Vehicles Table -->
     <table class="users-table" *ngIf="paginatedVehicles.length > 0; else noVehicles">
       <thead>
       <tr>
@@ -54,7 +52,6 @@
   </div>
 </div>
 
-<!-- CONTEXT MENU -->
 <mat-menu #vehicleMenu="matMenu">
   <button mat-menu-item (click)="viewDetails(selectedVehicle)">View Details
     <mat-icon>visibility</mat-icon>
