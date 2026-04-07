@@ -32,7 +32,7 @@ export class LogIn {
     this.authService.login(this.idNumber, this.password).subscribe({
       next: (res: LoginResponse) => {
         if (res.success) {
-          // ✅ Save full response for guard + profile
+
           localStorage.setItem('userData', JSON.stringify(res));
           this.authService.setRole(res.role);
 
@@ -41,7 +41,7 @@ export class LogIn {
             panelClass: ['snackbar-success']
           });
 
-          // ✅ Role-based navigation
+
           switch (res.role) {
             case 'Admin':
               this.router.navigate(['/home']);
