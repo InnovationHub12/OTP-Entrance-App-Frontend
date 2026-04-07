@@ -32,34 +32,44 @@ export class LogIn {
     this.authService.login(this.idNumber, this.password).subscribe({
       next: (res: LoginResponse) => {
         if (res.success) {
+          // ✅ Save full response for guard + profile
+          localStorage.setItem('userData', JSON.stringify(res));
+          this.authService.setRole(res.role);
+
           this.snackBar.open('Login successful!', 'Close', {
-            duration: 8000,
+            duration: 3000,
             panelClass: ['snackbar-success']
           });
 
-
-          localStorage.setItem('idNumber', res.idNumber);
-          localStorage.setItem('regNumber', res.regNumber);
-          localStorage.setItem('qrCode', res.qrCode);
-          this.authService.setRole(res.role);
-
-
-          this.router.navigate(['/home']);
+          // ✅ Role-based navigation
+          switch (res.role) {
+            case 'Admin':
+              this.router.navigate(['/home']);
+              break;
+            case 'security':
+              this.router.navigate(['/scan']);
+              break;
+            case 'officials':
+            case 'Visitor':
+              this.router.navigate(['/userProfile']);
+              break;
+            default:
+              this.router.navigate(['/home']);
+          }
         } else {
           this.snackBar.open(res.message || 'Login failed', 'Close', {
-            duration: 8000,
+            duration: 5000,
             panelClass: ['snackbar-error']
           });
         }
       },
       error: (err: { error: { message: string } }) => {
         this.snackBar.open(err.error?.message || 'Unknown error', 'Close', {
-          duration: 8000,
+          duration: 5000,
           panelClass: ['snackbar-error']
         });
       }
     });
   }
-
 
 }

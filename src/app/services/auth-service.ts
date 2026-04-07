@@ -18,12 +18,11 @@ private otpUrl = `${environment.apiUrl}/otp`;
   }
 
 
-  logout() {
-    localStorage.removeItem("idNumber");
-    localStorage.removeItem("regNumber");
-    localStorage.removeItem("qrCode");
-  }
-
+ logout() {
+   localStorage.removeItem('userData');
+   localStorage.removeItem('role');
+   this.role = null;
+ }
 
   loginWithId(idNumber: string): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.apiUrl}/login-with-id`, { idNumber });
