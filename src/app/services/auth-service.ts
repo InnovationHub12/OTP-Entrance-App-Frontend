@@ -44,9 +44,15 @@ private otpUrl = `${environment.apiUrl}/otp`;
   getRole(): string | null {
     return this.role ?? localStorage.getItem('role');
   }
- isLoggedIn(): boolean {
-    return !!localStorage.getItem('idNumber');
+isLoggedIn(): boolean {
+  const data = localStorage.getItem('userData');
+  if (data) {
+    const parsed = JSON.parse(data);
+    return parsed.success === true;
   }
+  return false;
+}
+
 
 }
 export interface LoginResponse {

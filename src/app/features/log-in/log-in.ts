@@ -37,13 +37,13 @@ export class LogIn {
             panelClass: ['snackbar-success']
           });
 
-          // ✅ Save user data for guard checks
+
           localStorage.setItem('idNumber', res.idNumber);
           localStorage.setItem('regNumber', res.regNumber);
           localStorage.setItem('qrCode', res.qrCode);
           this.authService.setRole(res.role);
 
-          // ✅ After login, all guarded routes are accessible
+
           this.router.navigate(['/home']);
         } else {
           this.snackBar.open(res.message || 'Login failed', 'Close', {
