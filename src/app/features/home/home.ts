@@ -41,13 +41,21 @@ export class Home {
     this.router.navigate(['/userProfile']);
   }
 
-  isDisabled(button: string): boolean {
-    if (this.role === 'security' && button === 'admin')
-      return true;
-    if (this.role === 'officials'||this.role ==='Visitor' && (button === 'security' || button === 'admin'))
-      return true;
-    return false;
+isDisabled(button: string): boolean {
+
+  if (this.role === 'security' && button === 'admin') {
+    return true;
   }
+
+  if ((this.role === 'officials' || this.role === 'Visitor')
+      && (button === 'security' || button === 'admin')) {
+    return true;
+  }
+
+
+  return false;
+}
+
 logout(): void {
   localStorage.clear();
   this.router.navigate(['/login']);
