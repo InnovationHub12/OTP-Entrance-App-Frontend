@@ -125,4 +125,47 @@ onPageChange(event: PageEvent): void {
 viewUser(idNumber: string): void {
   this.expandedUserId = this.expandedUserId === idNumber ? null : idNumber;
 }
+
+downloadLogs(idNumber: string): void {
+  const logs = this.userLogs[idNumber];
+  if (!logs || logs.length === 0) {
+    this.snackBar.open('No logs available for this user', 'Close', {
+      duration: 3000,
+      panelClass: ['snackbar-error']
+    });
+    return;
+  }
+
+  // Build CSV content
+  const header = ['Registration', 'Entry Date', 'Entry Time', 'Exit Time'];
+  const rows = logs.map(log => {
+    const entryDate = log.entryTime ? new Date(log.entryTime).toLocaleDateString('en-ZA') : '';
+    const entryTime = log.entryTime ? new Date(log.entryTime).toLocaleTimeString('en-ZA') : '';
+    const exitTime = log.exitTime ? new Date(log.exitTime).toLocaleTimeString('en-ZA') : '';
+
+    return [
+      log.registrationNumber ?? '',
+      entryDate,
+      entryTime,
+      exitTime
+    ];
+  });
+
+  const csvContent = [header, ...rows].map(e => e.join(',')).join('\n');
+
+  // Create blob and trigger download
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.setAttribute('download', `logs_${idNumber}.csv`);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  this.snackBar.open('Logs downloaded successfully', 'Close', {
+    duration: 3000,
+    panelClass: ['snackbar-success']
+  });
+}
 }

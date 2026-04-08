@@ -49,6 +49,13 @@
                 <mat-icon>delete</mat-icon>
                 <span>Delete</span>
               </button>
+
+              <button mat-menu-item (click)="downloadLogs(user.idNumber)"
+                      [disabled]="!userLogs[user.idNumber] || userLogs[user.idNumber].length === 0">
+                <mat-icon>download</mat-icon>
+                <span>Download Logs</span>
+              </button>
+
             </mat-menu>
           </td>
         </tr>
