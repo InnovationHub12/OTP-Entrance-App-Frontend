@@ -136,7 +136,7 @@ downloadLogs(idNumber: string): void {
     return;
   }
 
-  // Build CSV content
+
   const header = ['Registration', 'Entry Date', 'Entry Time', 'Exit Time'];
   const rows = logs.map(log => {
     const entryDate = log.entryTime ? new Date(log.entryTime).toLocaleDateString('en-ZA') : '';
@@ -153,7 +153,7 @@ downloadLogs(idNumber: string): void {
 
   const csvContent = [header, ...rows].map(e => e.join(',')).join('\n');
 
-  // Create blob and trigger download
+
   const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');

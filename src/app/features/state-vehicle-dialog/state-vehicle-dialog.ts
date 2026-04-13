@@ -19,10 +19,17 @@ export class StateVehicleDialog {
     this.dialogRef.close();
   }
 get currentImage(): string {
-    return this.data.images && this.data.images.length > 0
-      ? this.data.images[this.currentIndex]
-      : '';
-  }
+  return this.data.images && this.data.images.length > 0
+    ? this.data.images[this.currentIndex].url
+    : '';
+}
+get currentPhase(): string {
+  return this.data.images?.[this.currentIndex]?.phase || '';
+}
+
+get currentSide(): string {
+  return this.data.images?.[this.currentIndex]?.side || '';
+}
 
  get currentStep(): string {
     return this.steps[this.currentIndex] || `Image ${this.currentIndex + 1}`;

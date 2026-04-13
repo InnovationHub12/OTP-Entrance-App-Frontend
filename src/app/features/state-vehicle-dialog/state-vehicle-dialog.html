@@ -15,7 +15,10 @@
 
   <!-- Right side: Image viewer -->
   <div class="image-section" *ngIf="data.images && data.images.length > 0">
-    <p><strong>{{ currentStep }}</strong></p>
+    <p>
+      <strong>Side:</strong> {{ currentSide }}<br>
+      <strong>Phase:</strong> {{ currentPhase }}
+    </p>
     <img [src]="currentImage" alt="Vehicle image" />
 
     <div class="nav-buttons">
