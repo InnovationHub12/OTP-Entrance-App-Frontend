@@ -12,7 +12,7 @@
         placeholder="Enter registration, driver name, kilometers or Total Distance"
       />
     </div>
-
+    <div class="table-container">
     <table class="users-table" *ngIf="paginatedVehicles.length > 0; else noVehicles">
       <thead>
       <tr>
@@ -37,7 +37,7 @@
       </tr>
       </tbody>
     </table>
-
+    </div>
     <ng-template #noVehicles>
       <p>No state vehicles found.</p>
     </ng-template>
