@@ -4,98 +4,143 @@
   <div class="admin-card">
     <h2>All Users</h2>
 
-    <!-- Unified Search Bar -->
     <div class="search-bar">
       <label for="searchTerm">Search:</label>
-      <input id="searchTerm"
-             [(ngModel)]="searchTerm"
-             (input)="filterUsers()"
-             placeholder="Enter ID, registration, name, or role" />
+      <input
+        id="searchTerm"
+        [(ngModel)]="searchTerm"
+        (input)="filterUsers()"
+        placeholder="Enter ID, registration, name, or role" />
     </div>
 
-    <!-- Users Table -->
-    <table class="users-table" *ngIf="paginatedUsers.length > 0; else noUsers">
-      <thead>
-      <tr>
-        <th>Name</th>
-        <th>ID Number</th>
-        <th>Role</th>
-        <th>Reg Number</th>
-        <th>Options</th>
-      </tr>
-      </thead>
-      <tbody>
-      <ng-container *ngFor="let user of paginatedUsers">
-        <!-- User Row -->
+    <div class="table-container">
+
+      <table class="users-table" *ngIf="paginatedUsers.length > 0; else noUsers">
+        <thead>
         <tr>
-          <td>{{ user.name }}</td>
-          <td>{{ user.idNumber }}</td>
-          <td>{{ user.role }}</td>
-          <td>{{ user.regNumber }}</td>
-          <td>
-            <!-- Context Menu Trigger -->
-            <button mat-icon-button [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-
-            <!-- Context Menu -->
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="viewUser(user.idNumber)"
-                      [disabled]="!userLogs[user.idNumber] || userLogs[user.idNumber].length === 0">
-                <mat-icon>visibility</mat-icon>
-                <span>View Logs</span>
-              </button>
-              <button mat-menu-item (click)="deleteUser(user.idNumber)">
-                <mat-icon>delete</mat-icon>
-                <span>Delete</span>
-              </button>
-
-              <button mat-menu-item (click)="downloadLogs(user.idNumber)"
-                      [disabled]="!userLogs[user.idNumber] || userLogs[user.idNumber].length === 0">
-                <mat-icon>download</mat-icon>
-                <span>Download Logs</span>
-              </button>
-
-            </mat-menu>
-          </td>
+          <th>Name</th>
+          <th>ID Number</th>
+          <th>Role</th>
+          <th>Reg Number</th>
+          <th>Options</th>
         </tr>
+        </thead>
 
-        <tr *ngIf="expandedUserId === user.idNumber">
-          <td colspan="5">
-            <table class="mini-table">
-              <thead>
-              <tr>
-                <th>Registration</th>
-                <th>Entry Date</th>
-                <th>Entry Time</th>
-                <th>Exit Time</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr *ngFor="let log of userLogs[user.idNumber]">
-                <td>{{ log.registrationNumber }}</td>
-                <td>{{ log.entryTime | date:'yyyy-MM-dd':'Africa/Johannesburg' }}</td>
-                <td>{{ log.entryTime | date:'HH:mm:ss':'Africa/Johannesburg' }}</td>
-                <td *ngIf="log.exitTime">{{ log.exitTime | date:'HH:mm:ss':'Africa/Johannesburg' }}</td>
-              </tr>
-              </tbody>
-            </table>
-          </td>
-        </tr>
-      </ng-container>
-      </tbody>
-    </table>
+        <tbody>
 
-    <!-- No Users Fallback -->
+        <ng-container *ngFor="let user of paginatedUsers">
+
+          <tr>
+            <td>{{ user.name }}</td>
+            <td>{{ user.idNumber }}</td>
+            <td>{{ user.role }}</td>
+            <td>{{ user.regNumber }}</td>
+
+            <td>
+              <button
+                mat-icon-button
+                [matMenuTriggerFor]="menu"
+                (click)="$event.stopPropagation()">
+
+                <mat-icon>more_vert</mat-icon>
+
+              </button>
+
+              <mat-menu #menu="matMenu">
+
+                <button
+                  mat-menu-item
+                  (click)="viewUser(user.idNumber)"
+                  [disabled]="!userLogs[user.idNumber] || userLogs[user.idNumber].length === 0">
+
+                  <mat-icon>visibility</mat-icon>
+                  <span>View Logs</span>
+
+                </button>
+
+                <button
+                  mat-menu-item
+                  (click)="deleteUser(user.idNumber)">
+
+                  <mat-icon>delete</mat-icon>
+                  <span>Delete</span>
+
+                </button>
+
+                <button
+                  mat-menu-item
+                  (click)="downloadLogs(user.idNumber)"
+                  [disabled]="!userLogs[user.idNumber] || userLogs[user.idNumber].length === 0">
+
+                  <mat-icon>download</mat-icon>
+                  <span>Download Logs</span>
+
+                </button>
+
+              </mat-menu>
+            </td>
+          </tr>
+
+          <tr *ngIf="expandedUserId === user.idNumber">
+            <td colspan="5">
+
+              <div class="table-container">
+
+                <table class="mini-table">
+
+                  <thead>
+                  <tr>
+                    <th>Registration</th>
+                    <th>Entry Date</th>
+                    <th>Entry Time</th>
+                    <th>Exit Time</th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+                  <tr *ngFor="let log of userLogs[user.idNumber]">
+
+                    <td>{{ log.registrationNumber }}</td>
+
+                    <td>
+                      {{ log.entryTime | date:'yyyy-MM-dd':'Africa/Johannesburg' }}
+                    </td>
+
+                    <td>
+                      {{ log.entryTime | date:'HH:mm:ss':'Africa/Johannesburg' }}
+                    </td>
+
+                    <td *ngIf="log.exitTime">
+                      {{ log.exitTime | date:'HH:mm:ss':'Africa/Johannesburg' }}
+                    </td>
+
+                  </tr>
+                  </tbody>
+
+                </table>
+
+              </div>
+
+            </td>
+          </tr>
+
+        </ng-container>
+
+        </tbody>
+      </table>
+
+    </div>
+
     <ng-template #noUsers>
       <p>No users found.</p>
     </ng-template>
 
-    <!-- Paginator -->
-    <mat-paginator [length]="users.length"
-                   [pageSize]="pageSize"
-                   [pageSizeOptions]="[5, 10, 20]"
-                   (page)="onPageChange($event)">
+    <mat-paginator
+      [length]="users.length"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="[5, 10, 20]"
+      (page)="onPageChange($event)">
     </mat-paginator>
+
   </div>
 </div>

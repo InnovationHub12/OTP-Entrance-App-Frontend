@@ -7,26 +7,84 @@
 .admin-card {
   background: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
 }
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #28a745;
+}
+
+/* Search */
+
+.search-bar {
+  margin-bottom: 15px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Table container */
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Main table */
 
 .users-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  min-width: 700px;
 }
 
-.users-table th, .users-table td {
+.users-table th,
+.users-table td {
   border: 1px solid #ccc;
   padding: 10px;
   text-align: left;
 }
 
 .users-table th {
-  background-color: #28a745; /* green header */
+  background-color: #28a745;
   color: white;
 }
+
+/* Mini table */
+
+.mini-table {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background: #f9f9f9;
+}
+
+.mini-table th,
+.mini-table td {
+  border: 1px solid #ccc;
+  padding: 6px;
+  text-align: left;
+}
+
+.mini-table th {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Delete Button */
 
 .delete-btn {
   background-color: #f44336;
@@ -41,59 +99,128 @@
   background-color: #d32f2f;
 }
 
-.mini-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-  background: #f9f9f9;
-}
+/* Dropdown */
 
-.mini-table th, .mini-table td {
-  border: 1px solid #ccc;
-  padding: 6px;
-  text-align: left;
-}
-
-.mini-table th {
-  background-color: #007bff; /* blue header */
-  color: white;
-}
-
-/* Dropdown arrow styling */
 .dropdown-arrow {
   cursor: pointer;
-  color: #4CAF50; /* branded green */
+  color: #4caf50;
   vertical-align: middle;
   transition: transform 0.2s;
 }
 
 .dropdown-arrow:hover {
   transform: scale(1.2);
-  color: #388E3C; /* darker hover green */
+  color: #388e3c;
 }
 
-/* Unified search bar styling */
-.search-bar {
-  margin-bottom: 15px;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.search-bar input {
-  flex: 1;
-  padding: 6px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
+/* Notes */
 
 textarea {
-  width: 250px;       /* narrower width */
-  height: 60px;       /* smaller height */
-  resize: none;       /* prevent resizing (optional) */
+  width: 250px;
+  height: 60px;
+  resize: none;
   padding: 6px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-family: inherit;
   font-size: 14px;
+}
+
+/* ================================= */
+/* Tablet */
+/* ================================= */
+
+@media screen and (max-width: 768px) {
+
+  .admin-wrapper {
+    padding: 10px;
+  }
+
+  .admin-card {
+    padding: 15px;
+  }
+
+  .search-bar {
+    flex-wrap: wrap;
+  }
+
+  .search-bar label {
+    width: 100%;
+  }
+
+  .search-bar input {
+    width: 100%;
+  }
+
+  .users-table {
+    min-width: 650px;
+  }
+
+  .mini-table {
+    min-width: 550px;
+  }
+}
+
+/* ================================= */
+/* Mobile */
+/* ================================= */
+
+@media screen and (max-width: 480px) {
+
+  .admin-wrapper {
+    margin: 10px auto;
+    padding: 5px;
+  }
+
+  .admin-card {
+    padding: 12px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .search-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .search-bar input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .users-table {
+    min-width: 600px;
+    font-size: 13px;
+  }
+
+  .mini-table {
+    min-width: 500px;
+    font-size: 12px;
+  }
+
+  .users-table th,
+  .users-table td,
+  .mini-table th,
+  .mini-table td {
+    padding: 8px;
+    white-space: nowrap;
+  }
+
+  button[mat-icon-button] {
+    width: 40px;
+    height: 40px;
+  }
+
+  textarea {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  mat-paginator {
+    overflow-x: auto;
+    display: block;
+  }
 }
