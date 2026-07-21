@@ -1,3 +1,4 @@
+/* Background image fills the page */
 .bg-container {
   min-height: 100vh;
   width: 100%;
@@ -5,53 +6,64 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  position: relative;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
 }
 
-/* Header */
+/* Header styling */
 .Welcome-header {
-  margin-top: 30px;
-  font-size: 2rem;
+  margin-top: 40px;
+  font-size: 28px;
   font-weight: 600;
-  color: #fff;
+  color: #ffffff;
   text-align: center;
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
-/* Main container */
+/* White container for buttons */
 .roles-box {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 25px;
+  background-color: #fff;
+  padding: 40px 60px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  margin-top: 40px;
+  margin-top: 120px;
 
   display: flex;
+  gap: 80px;
   justify-content: center;
   align-items: center;
-  gap: 40px;
-  flex-wrap: wrap; /* allows wrapping on small screens */
 }
 
-/* Wrappers */
-.admin-wrapper,
-.secure-wrapper,
-.employee-wrapper {
+/* Button wrappers */
+.admin-wrapper, .secure-wrapper, .employee-wrapper {
   text-align: center;
 }
 
-/* Buttons */
+/* General button styling */
+button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Role buttons */
 .admin-btn img,
 .secure-btn img,
 .employee-btn img {
-  width: 90px;
-  height: 90px;
+  width: 92px;
+  height: 92px;
   border-radius: 50%;
-  transition: transform 0.3s ease;
+  transition: transform 0.2s ease;
 }
 
 .admin-btn:hover img,
@@ -60,61 +72,79 @@
   transform: scale(1.05);
 }
 
-.admin-label,
-.secure-label,
-.employee-label {
+/* Labels */
+.admin-label, .secure-label, .employee-label {
+  font-size: 14px;
+  font-weight: 600;
   margin-top: 8px;
   display: block;
-  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
-/* Logout */
+/* Logout button pinned top right */
 .logout-wrapper {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 20px;
+  right: 20px;
 }
 
 .logout-wrapper button {
-  background: #d9534f;
-  color: white;
+  background-color: #d9534f; /* red for logout */
+  color: #fff;
   border-radius: 5px;
-  padding: 8px 12px;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-/* ================= MOBILE ================= */
-
+.logout-wrapper button:hover {
+  background-color: #c9302c;
+}
+/* ============================= */
+/* Responsive for Tablets */
+/* ============================= */
 @media screen and (max-width: 768px) {
+
   .Welcome-header {
-    font-size: 1.6rem;
-    margin-top: 60px;
+    font-size: 24px;
+    margin-top: 30px;
+    padding: 0 10px;
   }
 
   .roles-box {
-    width: 95%;
-    padding: 20px;
-    gap: 25px;
-    margin-top: 30px;
+    margin-top: 80px;
+    padding: 30px;
+    gap: 40px;
+    flex-wrap: wrap;
   }
 
   .admin-btn img,
   .secure-btn img,
   .employee-btn img {
-    width: 75px;
-    height: 75px;
+    width: 80px;
+    height: 80px;
   }
 }
 
+/* ============================= */
+/* Responsive for Mobile Phones */
+/* ============================= */
 @media screen and (max-width: 480px) {
+
   .Welcome-header {
-    font-size: 1.3rem;
+    font-size: 20px;
+    margin-top: 60px;
+    padding: 0 10px;
   }
 
   .roles-box {
-    flex-direction: column; /* stack vertically */
-    gap: 20px;
-    width: 95%;
-    padding: 20px 15px;
+    width: 90%;
+    margin-top: 60px;
+    padding: 20px;
+    gap: 25px;
+    flex-direction: column;
   }
 
   .admin-btn img,
@@ -127,7 +157,7 @@
   .admin-label,
   .secure-label,
   .employee-label {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .logout-wrapper {
@@ -136,7 +166,7 @@
   }
 
   .logout-wrapper button {
-    padding: 6px 10px;
-    font-size: 14px;
+    padding: 5px 10px;
+    font-size: 12px;
   }
 }
