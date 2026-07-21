@@ -36,6 +36,11 @@
                 "glob": "_redirects",
                 "input": "public",
                 "output": "."
+              },
+              {
+                "glob": "staticwebapp.config.json",
+                "input": ".",
+                "output": "."
               }
             ],
             "styles": [
