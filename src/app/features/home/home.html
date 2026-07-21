@@ -1,32 +1,22 @@
-<div class="bg-container">
-  <div class="logout-wrapper">
-    <button mat-menu-item (click)="logout()">
-      <mat-icon>logout</mat-icon>
-      Log out
+<div class="roles-box">
+  <div class="admin-wrapper">
+    <button class="admin-btn">
+      assets/images/admn.jpg" alt="Admin">
     </button>
+    <span class="admin-label">Admin</span>
   </div>
 
-  <h1 class="Welcome-header">Welcome to OTP Entrance</h1>
-  <div class="roles-box">
-    <div class="admin-wrapper">
-      <button class="admin-btn" [disabled]="isDisabled('admin')" (click)="goToADmin()">
-        <img src="assets/images/admn.jpg" alt="Admin Icon" class="admin-icon" />
-      </button>
-      <span class="admin-label">Admin</span>
-    </div>
+  <div class="secure-wrapper">
+    <button class="secure-btn">
+      assets/images/security.jpg alt="Security">
+    </button>
+    <span class="secure-label">Security</span>
+  </div>
 
-    <div class="secure-wrapper">
-      <button class="secure-btn" [disabled]="isDisabled('security')" (click)="goToScan()">
-        <img src="assets/images/security.jpg" alt="Security Icon" class="secure-icon" />
-      </button>
-      <span class="secure-label">Security</span>
-    </div>
-
-    <div class="employee-wrapper">
-      <button class="employee-btn" [disabled]="isDisabled('officials')" (click)="goToQrCode()">
-        <img src="assets/images/brief.jpg" alt="Employee Icon" class="employee-icon" />
-      </button>
-      <span class="employee-label">Employee</span>
-    </div>
+  <div class="employee-wrapper">
+    <button class="employee-btn">
+      assets/images/brief.jpg" alt="Employee">
+    </button>
+    <span class="employee-label">Employee</span>
   </div>
 </div>
