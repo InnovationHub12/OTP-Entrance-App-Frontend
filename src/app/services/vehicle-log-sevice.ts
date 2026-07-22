@@ -8,7 +8,7 @@ export interface VehicleLogEntry {
   entryDate?: string;
   entryTime?: string;
   exitTime?: string;
-  user?: any; // will hold User object from backend
+  user?: any;
 }
 
 @Injectable({
@@ -24,13 +24,11 @@ export class VehicleLogService {
   logEntry(idNumber: number, entry: VehicleLogEntry): Observable<any> {
     return this.http.post(`${this.apiUrl}/entry/${idNumber}`, entry);
   }
-
-  // Edit exit time or registration number for an existing entry
   editEntry(id: number, updateData: VehicleLogEntry): Observable<VehicleLogEntry> {
     return this.http.put<VehicleLogEntry>(`${this.apiUrl}/edit/${id}`, updateData);
   }
 
-  // Get all logs for today
+
   getTodayLogs(): Observable<VehicleLogEntry[]> {
     return this.http.get<VehicleLogEntry[]>(`${this.apiUrl}/today`);
   }

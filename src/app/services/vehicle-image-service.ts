@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,7 @@ uploadImages(
     formData.append('left', this.dataURLtoFile(images[2], 'left.png'));
     formData.append('right', this.dataURLtoFile(images[3], 'right.png'));
 
-    return fetch('http://localhost:8080/api/images/upload', {
+    return fetch(`${environment.apiUrl}/images/upload`, {
       method: 'POST',
       body: formData,
       credentials: 'include'
